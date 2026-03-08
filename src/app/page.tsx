@@ -232,9 +232,6 @@ function Quadrant({ data, hovered, setHovered, setActive, isMobile, isVisible, i
            {data.title}
          </motion.h2>
 
-
-
-
          {!isMobile && (isVisible) && (
           <div className="mt-4 w-full flex justify-center min-h-[5rem]">
             <AnimatePresence mode="wait">
@@ -302,7 +299,7 @@ function ActiveView({ data, onClose, onNavigate }: any) {
       return;
     }
     if (!emailRegex.test(formData.email)) {
-      setError("Please provide a valid email");
+      setError("Please provide a valid email ending in .com");
       return;
     }
     setError("");
@@ -327,7 +324,7 @@ function ActiveView({ data, onClose, onNavigate }: any) {
        
        <button 
          onClick={resetFlow}
-         className="fixed top-6 right-6 md:top-12 md:right-12 z-[110] p-4 rounded-full bg-black/20 hover:bg-black/40 hover:scale-110 active:scale-95 backdrop-blur-xl transition-all border border-black/5 text-white"
+         className="fixed top-6 right-6 md:top-12 md:right-12 z-[110] p-4 rounded-full bg-black/20 hover:bg-black/40 hover:scale-110 active:scale-95 backdrop-blur-xl transition-all border border-white/10 text-white"
        >
          <X className="w-6 h-6 md:w-8 md:h-8" />
        </button>
@@ -340,7 +337,7 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                  <data.icon className="w-16 h-16 md:w-24 md:h-24 opacity-80" />
                </motion.div>
                
-               <motion.h2 layoutId={`title-${data.id}`} className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-poppins font-bold mb-8 md:mb-12 leading-[1.1] break-words uppercase tracking-tighter text-inherit">
+               <motion.h2 layoutId={`title-${data.id}`} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-poppins font-bold mb-6 md:mb-10 leading-[1.1] break-words uppercase tracking-tighter text-inherit">
                  {data.title}
                </motion.h2>
                
@@ -353,10 +350,10 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                      exit={{ opacity: 0, y: -20 }}
                      className="w-full"
                    >
-                     <h3 className="text-2xl md:text-4xl font-light opacity-80 mb-8 tracking-wide italic text-inherit">
+                     <h3 className="text-xl md:text-3xl font-light opacity-80 mb-6 tracking-wide italic text-inherit">
                        {data.subtitle}
                      </h3>
-                     <p className="text-xl md:text-2xl leading-relaxed opacity-90 max-w-3xl font-inter mb-24 text-inherit">
+                     <p className="text-lg md:text-xl leading-relaxed opacity-90 max-w-3xl font-inter mb-20 text-inherit">
                        {data.content}
                      </p>
 
@@ -445,19 +442,19 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                      {/* PHILOSOPHY DEEP DIVE */}
                      {data.id === 'philosophy' && (
                        <div className="space-y-8">
-                         <div className="p-12 md:p-16 rounded-[3rem] bg-current/5 border border-current/10 text-center relative overflow-hidden">
-                            <Sparkles className="w-16 h-16 mx-auto mb-8 opacity-20" />
-                            <p className="text-2xl md:text-4xl font-light italic leading-relaxed opacity-90 relative z-10">
+                         <div className="p-8 md:p-12 rounded-[2.5rem] bg-current/5 border border-current/10 text-center relative overflow-hidden">
+                            <Sparkles className="w-12 h-12 mx-auto mb-6 opacity-20" />
+                            <p className="text-xl md:text-2xl font-light italic leading-relaxed opacity-90 relative z-10">
                               "We envision a world where caring for the mind is as normalized as caring for the body. True resilience isn't about avoiding stress—it's about learning how to navigate it with grace, clarity, and purpose."
                             </p>
-                            <div className="mt-10 flex items-center justify-center gap-4 opacity-50">
-                              <span className="w-12 h-[1px] bg-current"></span>
-                              <span className="text-sm font-bold uppercase tracking-widest">The Mindwise Core</span>
-                              <span className="w-12 h-[1px] bg-current"></span>
+                            <div className="mt-8 flex items-center justify-center gap-3 opacity-50">
+                              <span className="w-10 h-[1px] bg-current"></span>
+                              <span className="text-xs font-bold uppercase tracking-widest">The Mindwise Core</span>
+                              <span className="w-10 h-[1px] bg-current"></span>
                             </div>
                          </div>
-                         <button onClick={() => setStep(0)} className="flex items-center gap-3 text-lg font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity">
-                           <ArrowLeft className="w-5 h-5" /> Go Back
+                         <button onClick={() => setStep(0)} className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity">
+                           <ArrowLeft className="w-4 h-4" /> Go Back
                          </button>
                        </div>
                      )}
@@ -465,43 +462,43 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                      {/* APPROACH DEEP DIVE */}
                      {data.id === 'approach' && (
                        <div className="space-y-8">
-                         <h3 className="text-3xl font-bold mb-8 opacity-90">A Typical 60-Minute Session</h3>
-                         <div className="space-y-6">
-                           <div className="flex gap-8 items-start p-8 rounded-[2.5rem] bg-black/5 border border-current/10 hover:bg-black/10 transition-colors">
-                              <div className="p-4 rounded-full bg-current/10 shrink-0"><Heart className="w-8 h-8 opacity-80" /></div>
+                         <h3 className="text-2xl font-bold mb-6 opacity-90">A Typical 60-Minute Session</h3>
+                         <div className="space-y-4">
+                           <div className="flex gap-6 items-start p-6 rounded-3xl bg-black/5 border border-current/10 hover:bg-black/10 transition-colors">
+                              <div className="p-3 rounded-full bg-current/10 shrink-0"><Heart className="w-6 h-6 opacity-80" /></div>
                               <div>
-                                 <h4 className="text-2xl font-bold mb-2">1. Grounding <span className="opacity-50 text-base font-normal ml-2">(10 mins)</span></h4>
-                                 <p className="text-lg opacity-80 leading-relaxed">Centering exercises to bring focus to the present moment and leave the day's noise behind.</p>
+                                 <h4 className="text-xl font-bold mb-1">1. Grounding <span className="opacity-50 text-sm font-normal ml-2">(10 mins)</span></h4>
+                                 <p className="text-base opacity-80 leading-relaxed">Centering exercises to bring focus to the present moment and leave the day's noise behind.</p>
                               </div>
                            </div>
-                           <div className="flex gap-8 items-start p-8 rounded-[2.5rem] bg-black/5 border border-current/10 hover:bg-black/10 transition-colors">
-                              <div className="p-4 rounded-full bg-current/10 shrink-0"><Compass className="w-8 h-8 opacity-80" /></div>
+                           <div className="flex gap-6 items-start p-6 rounded-3xl bg-black/5 border border-current/10 hover:bg-black/10 transition-colors">
+                              <div className="p-3 rounded-full bg-current/10 shrink-0"><Compass className="w-6 h-6 opacity-80" /></div>
                               <div>
-                                 <h4 className="text-2xl font-bold mb-2">2. Discovery <span className="opacity-50 text-base font-normal ml-2">(30 mins)</span></h4>
-                                 <p className="text-lg opacity-80 leading-relaxed">Interactive workshops, safe role-playing, and cognitive framing to build real skills.</p>
+                                 <h4 className="text-xl font-bold mb-1">2. Discovery <span className="opacity-50 text-sm font-normal ml-2">(30 mins)</span></h4>
+                                 <p className="text-base opacity-80 leading-relaxed">Interactive workshops, safe role-playing, and cognitive framing to build real skills.</p>
                               </div>
                            </div>
-                           <div className="flex gap-8 items-start p-8 rounded-[2.5rem] bg-black/5 border border-current/10 hover:bg-black/10 transition-colors">
-                              <div className="p-4 rounded-full bg-current/10 shrink-0"><ShieldCheck className="w-8 h-8 opacity-80" /></div>
+                           <div className="flex gap-6 items-start p-6 rounded-3xl bg-black/5 border border-current/10 hover:bg-black/10 transition-colors">
+                              <div className="p-3 rounded-full bg-current/10 shrink-0"><ShieldCheck className="w-6 h-6 opacity-80" /></div>
                               <div>
-                                 <h4 className="text-2xl font-bold mb-2">3. Integration <span className="opacity-50 text-base font-normal ml-2">(20 mins)</span></h4>
-                                 <p className="text-lg opacity-80 leading-relaxed">Actionable takeaways and structured journaling to apply today's growth to tomorrow's life.</p>
+                                 <h4 className="text-xl font-bold mb-1">3. Integration <span className="opacity-50 text-sm font-normal ml-2">(20 mins)</span></h4>
+                                 <p className="text-base opacity-80 leading-relaxed">Actionable takeaways and structured journaling to apply today's growth to tomorrow's life.</p>
                               </div>
                            </div>
                          </div>
-                         <button onClick={() => setStep(0)} className="flex items-center gap-3 text-lg font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity pt-4">
-                           <ArrowLeft className="w-5 h-5" /> Go Back
+                         <button onClick={() => setStep(0)} className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity pt-4">
+                           <ArrowLeft className="w-4 h-4" /> Go Back
                          </button>
                        </div>
                      )}
 
                      {/* CTA STEPS (1-5) */}
                      {isCTA && step === 1 && (
-                       <div className="w-full pt-16">
-                         <h3 className="text-3xl md:text-5xl font-bold mb-12 text-white">Who is this journey for?</h3>
-                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+                       <div className="w-full pt-12">
+                         <h3 className="text-2xl md:text-3xl font-bold mb-10 text-white">Who is this journey for?</h3>
+                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto">
                            {whoOptions.map(opt => (
-                             <button key={opt} onClick={() => { setFormData({...formData, who: opt}); setStep(2); }} className={`p-10 rounded-[2rem] ${ctaBtnBg} ${ctaBtnText} font-black text-3xl hover:scale-105 transition-all shadow-2xl border-4 border-transparent hover:border-white/50 text-center`}>
+                             <button key={opt} onClick={() => { setFormData({...formData, who: opt}); setStep(2); }} className={`p-6 rounded-2xl ${ctaBtnBg} ${ctaBtnText} font-bold text-xl hover:scale-[1.02] transition-all shadow-lg border-2 border-transparent hover:border-white/30 text-center`}>
                                {opt}
                              </button>
                            ))}
@@ -510,11 +507,11 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                      )}
 
                      {isCTA && step === 2 && (
-                       <div className="w-full pt-16">
-                         <h3 className="text-3xl md:text-5xl font-bold mb-12 text-white">What would you like to focus on?</h3>
-                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+                       <div className="w-full pt-12">
+                         <h3 className="text-2xl md:text-3xl font-bold mb-10 text-white">What would you like to focus on?</h3>
+                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto">
                            {focusOptions.map(opt => (
-                             <button key={opt} onClick={() => { setFormData({...formData, focus: opt}); setStep(3); }} className={`p-10 rounded-[2rem] ${ctaBtnBg} ${ctaBtnText} font-black text-3xl hover:scale-105 transition-all shadow-2xl border-4 border-transparent hover:border-white/50 text-center`}>
+                             <button key={opt} onClick={() => { setFormData({...formData, focus: opt}); setStep(3); }} className={`p-6 rounded-2xl ${ctaBtnBg} ${ctaBtnText} font-bold text-xl hover:scale-[1.02] transition-all shadow-lg border-2 border-transparent hover:border-white/30 text-center`}>
                                {opt}
                              </button>
                            ))}
@@ -523,37 +520,37 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                      )}
 
                      {isCTA && step === 3 && (
-                       <div className="w-full pt-16">
-                         <h3 className="text-3xl md:text-5xl font-bold mb-8 text-center uppercase tracking-tighter text-white">You're in the right place.</h3>
-                         <div className="max-w-2xl mx-auto p-10 rounded-[3rem] bg-white/10 backdrop-blur-xl border border-white/20 flex flex-col md:flex-row items-center gap-8 text-left mb-12 shadow-2xl">
-                            <div className="w-32 h-32 rounded-full bg-white/20 flex items-center justify-center shrink-0 border-2 border-white/30">
-                              <User className="w-16 h-16 text-white" />
+                       <div className="w-full pt-12">
+                         <h3 className="text-2xl md:text-3xl font-bold mb-8 text-center uppercase tracking-tighter text-white">You're in the right place.</h3>
+                         <div className="max-w-2xl mx-auto p-8 rounded-[2.5rem] bg-white/10 backdrop-blur-xl border border-white/20 flex flex-col md:flex-row items-center gap-8 text-left mb-12 shadow-2xl">
+                            <div className="w-24 h-24 rounded-full bg-white/20 flex items-center justify-center shrink-0 border-2 border-white/30">
+                              <User className="w-12 h-12 text-white" />
                             </div>
                             <div className="text-white">
-                              <h4 className="text-3xl font-bold mb-2">Our Certified Experts</h4>
-                              <p className="text-xl opacity-90 italic mb-4 font-medium leading-relaxed">"Our team of psychologists specializes in {formData.focus.toLowerCase()} for {formData.who.toLowerCase()}."</p>
-                              <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest opacity-70">
-                                <ShieldCheck className="w-5 h-5 text-brand-accent" /> PhD & Clinical Credentials
+                              <h4 className="text-2xl font-bold mb-2">Our Certified Experts</h4>
+                              <p className="text-lg opacity-90 italic mb-4 font-medium leading-relaxed">"Our team of psychologists specializes in {formData.focus.toLowerCase()} for {formData.who.toLowerCase()}."</p>
+                              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest opacity-70">
+                                <ShieldCheck className="w-4 h-4 text-brand-accent" /> PhD & Clinical Credentials
                               </div>
                             </div>
                          </div>
-                         <button onClick={nextStep} className={`px-12 py-8 rounded-full ${ctaBtnBg} ${ctaBtnText} font-black text-xl md:text-2xl hover:scale-105 transition-all shadow-xl mx-auto block uppercase tracking-widest`}>
+                         <button onClick={nextStep} className={`px-10 py-6 rounded-full ${ctaBtnBg} ${ctaBtnText} font-black text-lg md:text-xl hover:scale-105 transition-all shadow-xl mx-auto block uppercase tracking-widest`}>
                            Let's Map Your Path
                          </button>
                        </div>
                      )}
 
                      {isCTA && step === 4 && (
-                       <div className="w-full max-w-xl mx-auto pt-16">
-                         <h3 className="text-3xl md:text-5xl font-bold mb-8 text-center uppercase tracking-tighter text-white">Almost there...</h3>
-                         <p className="text-xl opacity-90 mb-12 text-center font-medium leading-relaxed text-white">We'll reach out to schedule your free 15-minute discovery call.</p>
+                       <div className="w-full max-w-xl mx-auto pt-12">
+                         <h3 className="text-2xl md:text-3xl font-bold mb-8 text-center uppercase tracking-tighter text-white">Almost there...</h3>
+                         <p className="text-lg opacity-90 mb-10 text-center font-medium leading-relaxed text-white">We'll reach out to schedule your free 15-minute discovery call.</p>
                          <div className="space-y-4 text-left">
-                           <input value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} type="text" placeholder="Your Name" className="w-full p-8 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-xl text-white placeholder:text-white/40 font-bold" />
-                           <input value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} type="email" placeholder="Your Email" className="w-full p-8 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-xl text-white placeholder:text-white/40 font-bold" />
+                           <input value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} type="text" placeholder="Your Name" className="w-full p-6 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-lg text-white placeholder:text-white/40 font-bold" />
+                           <input value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} type="email" placeholder="Your Email (ending in .com)" className="w-full p-6 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-lg text-white placeholder:text-white/40 font-bold" />
                            
                            {error && <p className="text-red-400 font-bold text-center animate-pulse">{error}</p>}
                            
-                           <button onClick={handleConfirm} className={`w-full p-8 rounded-2xl ${ctaBtnBg} ${ctaBtnText} font-black text-2xl hover:shadow-[0_0_60px_rgba(227,213,255,0.3)] transition-all shadow-xl uppercase tracking-widest`}>
+                           <button onClick={handleConfirm} className={`w-full p-6 rounded-2xl ${ctaBtnBg} ${ctaBtnText} font-black text-xl hover:shadow-[0_0_60px_rgba(227,213,255,0.3)] transition-all shadow-xl uppercase tracking-widest`}>
                              Confirm My Request
                            </button>
                          </div>
@@ -562,15 +559,15 @@ function ActiveView({ data, onClose, onNavigate }: any) {
 
                      {isCTA && step === 5 && (
                        <div className="w-full text-center py-12">
-                          <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-8">
+                          <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-8">
                             <ShieldCheck className="w-10 h-10 text-green-500" />
                           </div>
-                          <h3 className="text-4xl md:text-6xl font-bold mb-4 text-white tracking-tight">Confirmed.</h3>
+                          <h3 className="text-3xl md:text-4xl font-bold mb-4 text-white tracking-tight">Confirmed.</h3>
                           <div className="max-w-md mx-auto space-y-6 text-white text-center">
-                            <p className="text-xl md:text-2xl opacity-90">
+                            <p className="text-lg md:text-xl opacity-90">
                               Thanks, {formData.name.split(' ')[0]}. We'll reach out to <span className="font-bold underline">{formData.email}</span> within 24 hours.
                             </p>
-                            <button onClick={resetFlow} className="mt-8 text-white/50 hover:text-white underline underline-offset-8 transition-colors font-bold uppercase tracking-widest text-sm">
+                            <button onClick={resetFlow} className="mt-8 text-white/50 hover:text-white underline underline-offset-8 transition-colors font-bold uppercase tracking-widest text-xs">
                               Return to Home
                             </button>
                           </div>
