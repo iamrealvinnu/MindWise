@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MindWise 🧠
 
-## Getting Started
+### **The Elastic Mental Fitness Ecosystem**
 
-First, run the development server:
+MindWise is a high-performance, immersive landing experience built to bridge the gap between human psychology and digital fluidity. Designed with a focus on "Human-Aligned UI," the application utilizes elastic spatial animations and a multi-step discovery state machine to guide users through their mental fitness journey.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Technical Highlights
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### **1. Elastic Spatial UI (Framer Motion 12)**
+The core interface is built on a dynamic 4-quadrant grid system. Using Framer Motion's `layoutId` and `AnimatePresence`, the UI performs **Shared Layout Transitions**, allowing quadrants to morph into full-screen deep dives without losing visual context.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+*   **Cinematic Sequencing:** A 3.5-second "Solo Logo" entrance built with spring physics creates a moment of brand focus before the ecosystem "blooms" into view.
+*   **Contextual Morphing:** Components intelligently resize based on hover states and active view triggers, maintaining a 60fps fluid experience.
 
-## Learn More
+### **2. Guided Discovery State Machine**
+Rather than static forms, MindWise features a **6-step internal discovery flow**:
+*   `Intro` → `Identity` → `Focus` → `Expert Profile` → `Contact` → `Confirmation`.
+*   The system uses persistent state logic to customize the "Expert Profile" step based on user inputs (e.g., matching "Teens" with "Resilience" experts).
 
-To learn more about Next.js, take a look at the following resources:
+### **3. Performance-First Styling (Tailwind CSS 4)**
+*   **Fluid Mesh Gradients:** Dynamic background blobs are animated via CSS keyframes to avoid the "stark white" sterile feel of traditional medical apps.
+*   **Adaptive Typography:** A refined typographic scale that balances bold impact with soothing readability, utilizing variable font weights for maximum legibility across all viewport scales.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠 Tech Stack
 
-## Deploy on Vercel
+| Layer | Technology |
+| :--- | :--- |
+| **Framework** | Next.js 15 (App Router) |
+| **Runtime** | Node.js 20+ |
+| **Styling** | Tailwind CSS 4 |
+| **Animations** | Framer Motion 12 |
+| **Icons** | Lucide React |
+| **Deployment** | Netlify |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📦 Installation & Setup
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/iamrealvinnu/MindWise.git
+    cd MindWise
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+3.  **Run development server:**
+    ```bash
+    npm run dev
+    ```
+
+4.  **Build for production:**
+    ```bash
+    npm run build
+    ```
+
+---
+
+## 🌐 Netlify Deployment
+
+This project is optimized for Netlify deployment. To deploy manually:
+
+1.  Push your changes to GitHub.
+2.  Connect your repository to **Netlify**.
+3.  Ensure the following settings are detected:
+    *   **Build Command:** `npm run build`
+    *   **Publish Directory:** `.next`
+
+---
+
+## 🎨 Design Philosophy
+MindWise follows a **Soothing Professionalism** aesthetic:
+*   **Primary:** `#6A4C93` (Deep Amethyst) - Trust and Depth.
+*   **Accent:** `#B39DDB` (Light Lavender) - Calm and Clarity.
+*   **Charcoal:** `#2D3748` (Slate Charcoal) - Grounded and Professional.
+
+Developed with ❤️ for the future of mental fitness.
