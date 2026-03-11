@@ -150,7 +150,7 @@ export default function UniqueLanding() {
             <motion.div 
               animate={{ scale: [1, 1.03, 1] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="relative w-40 h-40 md:w-60 md:h-60 rounded-full bg-white/25 backdrop-blur-3xl border border-white/30 shadow-[0_30px_100px_rgba(106,76,147,0.3)] flex items-center justify-center p-6 md:p-10 overflow-hidden"
+              className="relative w-32 h-32 md:w-60 md:h-60 rounded-full bg-white/25 backdrop-blur-3xl border border-white/30 shadow-[0_30px_100px_rgba(106,76,147,0.3)] flex items-center justify-center p-4 md:p-10 overflow-hidden"
             >
               <div className="absolute inset-0 rounded-full border border-brand-primary/15 animate-[spin_15s_linear_infinite]" />
               <div className="absolute inset-4 rounded-full border border-brand-primary/10 animate-[spin_20s_linear_infinite_reverse]" />
@@ -162,15 +162,15 @@ export default function UniqueLanding() {
         )}
       </AnimatePresence>
 
-      {/* Grid Canvas */}
+      {/* Grid Canvas - FORCED 2x2 ON ALL SCREENS */}
       <div className="w-full h-full flex flex-col relative z-10">
         {/* Top Half */}
-        <div className="flex-1 flex flex-col md:flex-row">
+        <div className="flex-1 flex flex-row">
           <Quadrant data={quadrants[0]} hovered={hovered} setHovered={setHovered} setActive={setActive} isMobile={isMobile} isVisible={showQuadrants} index={0} />
           <Quadrant data={quadrants[1]} hovered={hovered} setHovered={setHovered} setActive={setActive} isMobile={isMobile} isVisible={showQuadrants} index={1} />
         </div>
         {/* Bottom Half */}
-        <div className="flex-1 flex flex-col md:flex-row">
+        <div className="flex-1 flex flex-row">
           <Quadrant data={quadrants[2]} hovered={hovered} setHovered={setHovered} setActive={setActive} isMobile={isMobile} isVisible={showQuadrants} index={2} />
           <Quadrant data={quadrants[3]} hovered={hovered} setHovered={setHovered} setActive={setActive} isMobile={isMobile} isVisible={showQuadrants} index={3} />
         </div>
@@ -209,7 +209,7 @@ function Quadrant({ data, hovered, setHovered, setActive, isMobile, isVisible, i
         scale: { duration: 1, delay: index * 0.1, ease: "easeOut" },
         flexGrow: { type: "spring", stiffness: 300, damping: 30 }
       }}
-      className="relative flex flex-col justify-center items-center cursor-pointer overflow-hidden group px-4"
+      className="relative flex flex-col justify-center items-center cursor-pointer overflow-hidden group px-2 md:px-4"
       style={{ flexBasis: 0 }}
       onMouseEnter={() => !isMobile && setHovered(data.id)}
       onMouseLeave={() => !isMobile && setHovered(null)}
@@ -225,10 +225,10 @@ function Quadrant({ data, hovered, setHovered, setActive, isMobile, isVisible, i
 
       <motion.div layoutId={`content-${data.id}`} className={`relative z-10 flex flex-col items-center text-center ${data.textColor} w-full max-w-2xl`}>
          <motion.div layoutId={`icon-${data.id}`}>
-           <data.icon className="w-12 h-12 md:w-16 md:h-16 mb-6 opacity-80" />
+           <data.icon className="w-10 h-10 md:w-16 md:h-16 mb-4 md:mb-6 opacity-80" />
          </motion.div>
          
-         <motion.h2 layoutId={`title-${data.id}`} className="text-2xl md:text-4xl font-poppins font-bold tracking-tight mb-2 break-words w-full uppercase tracking-tighter text-inherit">
+         <motion.h2 layoutId={`title-${data.id}`} className="text-xl md:text-4xl font-poppins font-bold tracking-tight mb-1 md:mb-2 break-words w-full uppercase tracking-tighter text-inherit">
            {data.title}
          </motion.h2>
 
@@ -261,7 +261,7 @@ function Quadrant({ data, hovered, setHovered, setActive, isMobile, isVisible, i
         )}
         
         {isMobile && (
-          <p className="mt-2 text-base opacity-70 font-medium px-6 text-center">
+          <p className="mt-1 text-xs sm:text-sm opacity-70 font-medium px-2 text-center line-clamp-1">
             {data.subtitle}
           </p>
         )}
@@ -299,7 +299,7 @@ function ActiveView({ data, onClose, onNavigate }: any) {
       return;
     }
     if (!emailRegex.test(formData.email)) {
-      setError("Please provide a valid email ending in .com");
+      setError("Please provide a valid email");
       return;
     }
     setError("");
