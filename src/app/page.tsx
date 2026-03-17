@@ -342,10 +342,10 @@ function ActiveView({ data, onClose, onNavigate }: any) {
          <div className={`flex-1 flex flex-col justify-start pt-32 pb-24 px-8 md:px-16 lg:px-24 relative z-10 ${isCTA ? 'items-center text-center' : 'items-start text-left'}`}>
            <motion.div layoutId={`content-${data.id}`} className="w-full max-w-4xl">
                <motion.div layoutId={`icon-${data.id}`} className={`mb-8 md:mb-12 ${isCTA ? 'flex justify-center' : ''}`}>
-                 <data.icon className="w-16 h-16 md:w-24 md:h-24 opacity-80" />
+                 <data.icon className="w-12 h-12 md:w-20 md:h-20 opacity-80" />
                </motion.div>
                
-               <motion.h2 layoutId={`title-${data.id}`} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-poppins font-bold mb-6 md:mb-10 leading-[1.1] break-words uppercase tracking-tighter text-inherit">
+               <motion.h2 layoutId={`title-${data.id}`} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-poppins font-bold mb-6 md:mb-8 leading-[1.1] break-words uppercase tracking-tighter text-inherit">
                  {data.title}
                </motion.h2>
                
@@ -358,41 +358,41 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                      exit={{ opacity: 0, y: -20 }}
                      className="w-full"
                    >
-                     <h3 className="text-xl md:text-3xl font-light opacity-80 mb-6 tracking-wide italic text-inherit">
+                     <h3 className="text-lg md:text-2xl font-light opacity-80 mb-6 tracking-wide italic text-inherit">
                        {data.subtitle}
                      </h3>
-                     <p className="text-lg md:text-xl leading-relaxed opacity-90 max-w-3xl font-inter mb-20 text-inherit">
+                     <p className="text-base md:text-lg leading-relaxed opacity-90 max-w-2xl font-inter mb-16 text-inherit">
                        {data.content}
                      </p>
 
                      {!isCTA && (
                        <>
                          {data.pillars && (
-                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-16">
+                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
                              {data.pillars.map((pillar: any, i: number) => (
-                               <div key={i} className="flex items-center gap-4 p-6 rounded-3xl bg-black/5 border border-current/10 transition-transform hover:scale-105 text-left text-inherit cursor-default">
-                                 <pillar.icon className="w-8 h-8 shrink-0 text-inherit opacity-70" />
-                                 <span className="text-lg font-bold text-inherit">{pillar.text}</span>
+                               <div key={i} className="flex items-center gap-4 p-5 rounded-3xl bg-black/5 border border-current/10 transition-transform hover:scale-105 text-left text-inherit cursor-default">
+                                 <pillar.icon className="w-6 h-6 shrink-0 text-inherit opacity-70" />
+                                 <span className="text-base font-bold text-inherit">{pillar.text}</span>
                                </div>
                              ))}
                            </div>
                          )}
                          {data.methods && (
-                           <div className="space-y-10 mb-16 text-left text-inherit">
-                             <h4 className="text-xl font-bold uppercase tracking-widest opacity-60 mb-6 flex items-center gap-3">
-                               <CheckCircle2 className="w-5 h-5" /> Our Sessions Combine
+                           <div className="space-y-8 mb-12 text-left text-inherit">
+                             <h4 className="text-lg font-bold uppercase tracking-widest opacity-60 mb-4 flex items-center gap-3">
+                               <CheckCircle2 className="w-4 h-4" /> Our Sessions Combine
                              </h4>
-                             <ul className="space-y-4">
+                             <ul className="space-y-3">
                                {data.methods.map((method: string, i: number) => (
-                                 <li key={i} className="text-xl md:text-2xl font-medium flex items-start gap-4">
-                                   <span className="w-3 h-3 rounded-full bg-current mt-3 shrink-0 opacity-50" />
+                                 <li key={i} className="text-lg md:text-xl font-medium flex items-start gap-4">
+                                   <span className="w-2 h-2 rounded-full bg-current mt-2.5 shrink-0 opacity-50" />
                                    {method}
                                  </li>
                                ))}
                              </ul>
-                             <div className="flex flex-wrap gap-3 mt-8">
+                             <div className="flex flex-wrap gap-2 mt-6">
                                {data.outcomes.map((outcome: string, i: number) => (
-                                 <span key={i} className="px-5 py-2 rounded-full border-2 border-current font-bold text-sm uppercase tracking-wider opacity-90">
+                                 <span key={i} className="px-4 py-1.5 rounded-full border-2 border-current font-bold text-xs uppercase tracking-wider opacity-90">
                                    {outcome}
                                  </span>
                                ))}
@@ -400,19 +400,19 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                            </div>
                          )}
                          {data.programList && (
-                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-16 text-left text-inherit">
+                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12 text-left text-inherit">
                              {data.programList.map((prog: any, i: number) => (
                                <div 
                                  key={i} 
                                  onClick={() => onNavigate('cta')}
-                                 className="p-8 rounded-[2.5rem] bg-white/5 border border-white/10 flex flex-col gap-4 hover:bg-white/10 hover:scale-[1.02] transition-all text-inherit cursor-pointer shadow-sm hover:shadow-xl"
+                                 className="p-6 rounded-[2rem] bg-white/5 border border-white/10 flex flex-col gap-3 hover:bg-white/10 hover:scale-[1.02] transition-all text-inherit cursor-pointer shadow-sm hover:shadow-xl"
                                >
                                  <div className="flex items-center justify-between">
-                                    <prog.icon className="w-10 h-10 text-inherit opacity-80" />
-                                    <ArrowRight className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    <prog.icon className="w-8 h-8 text-inherit opacity-80" />
+                                    <ArrowRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity" />
                                  </div>
-                                 <h4 className="text-2xl font-bold text-inherit mt-2">{prog.title}</h4>
-                                 <p className="text-lg opacity-80 leading-relaxed text-inherit">{prog.desc}</p>
+                                 <h4 className="text-xl font-bold text-inherit mt-1">{prog.title}</h4>
+                                 <p className="text-base opacity-80 leading-relaxed text-inherit">{prog.desc}</p>
                                </div>
                              ))}
                            </div>
@@ -421,20 +421,20 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                      )}
 
                      {isCTA && (
-                       <div className="flex flex-col items-center gap-8 mb-20">
-                          <div className="flex items-center gap-3 px-6 py-3 rounded-full bg-white/10 border border-white/20 shadow-lg text-white">
-                            <BookOpen className="w-5 h-5" />
-                            <span className="text-sm font-bold uppercase tracking-widest text-white">Scientifically Developed</span>
+                       <div className="flex flex-col items-center gap-6 mb-16">
+                          <div className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/10 border border-white/20 shadow-lg text-white">
+                            <BookOpen className="w-4 h-4" />
+                            <span className="text-xs font-bold uppercase tracking-widest text-white">Scientifically Developed</span>
                           </div>
                        </div>
                      )}
 
                      <button 
                        onClick={handleActionClick}
-                       className={`px-12 py-8 rounded-full font-black text-xl md:text-2xl flex items-center gap-4 transition-all group ${isCTA ? `mx-auto animate-pulse ${ctaBtnBg} ${ctaBtnText} shadow-2xl` : 'border-2 border-current hover:bg-black/10'}`}
+                       className={`px-10 py-6 rounded-full font-black text-lg md:text-xl flex items-center gap-4 transition-all group ${isCTA ? `mx-auto animate-pulse ${ctaBtnBg} ${ctaBtnText} shadow-2xl` : 'border-2 border-current hover:bg-black/10'}`}
                      >
                        {data.action} 
-                       <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
+                       <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                      </button>
                    </motion.div>
                  ) : (
@@ -444,69 +444,69 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                      initial={{ opacity: 0, x: 20 }} 
                      animate={{ opacity: 1, x: 0 }} 
                      exit={{ opacity: 0, x: -20 }} 
-                     className="w-full pt-8"
+                     className="w-full pt-6"
                    >
                      
                      {/* PHILOSOPHY DEEP DIVE */}
                      {data.id === 'philosophy' && (
-                       <div className="space-y-8">
-                         <div className="p-8 md:p-12 rounded-[2.5rem] bg-current/5 border border-current/10 text-center relative overflow-hidden">
-                            <Sparkles className="w-12 h-12 mx-auto mb-6 opacity-20" />
-                            <p className="text-xl md:text-2xl font-light italic leading-relaxed opacity-90 relative z-10">
+                       <div className="space-y-6">
+                         <div className="p-6 md:p-10 rounded-[2rem] bg-current/5 border border-current/10 text-center relative overflow-hidden">
+                            <Sparkles className="w-10 h-10 mx-auto mb-4 opacity-20" />
+                            <p className="text-lg md:text-xl font-light italic leading-relaxed opacity-90 relative z-10">
                               "We envision a world where caring for the mind is as normalized as caring for the body. True resilience isn't about avoiding stress—it's about learning how to navigate it with grace, clarity, and purpose."
                             </p>
-                            <div className="mt-8 flex items-center justify-center gap-3 opacity-50">
-                              <span className="w-10 h-[1px] bg-current"></span>
-                              <span className="text-xs font-bold uppercase tracking-widest">The Mindwise Core</span>
-                              <span className="w-10 h-[1px] bg-current"></span>
+                            <div className="mt-6 flex items-center justify-center gap-3 opacity-50">
+                              <span className="w-8 h-[1px] bg-current"></span>
+                              <span className="text-[10px] font-bold uppercase tracking-widest">The Mindwise Core</span>
+                              <span className="w-8 h-[1px] bg-current"></span>
                             </div>
                          </div>
-                         <button onClick={() => setStep(0)} className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity">
-                           <ArrowLeft className="w-4 h-4" /> Go Back
+                         <button onClick={() => setStep(0)} className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity">
+                           <ArrowLeft className="w-3 h-3" /> Go Back
                          </button>
                        </div>
                      )}
 
                      {/* APPROACH DEEP DIVE */}
                      {data.id === 'approach' && (
-                       <div className="space-y-8">
-                         <h3 className="text-2xl font-bold mb-6 opacity-90">A Typical 60-Minute Session</h3>
-                         <div className="space-y-4">
-                           <div className="flex gap-6 items-start p-6 rounded-3xl bg-black/5 border border-current/10 hover:bg-black/10 transition-colors">
-                              <div className="p-3 rounded-full bg-current/10 shrink-0"><Heart className="w-6 h-6 opacity-80" /></div>
+                       <div className="space-y-6">
+                         <h3 className="text-xl font-bold mb-4 opacity-90">A Typical 60-Minute Session</h3>
+                         <div className="space-y-3">
+                           <div className="flex gap-5 items-start p-5 rounded-2xl bg-black/5 border border-current/10 hover:bg-black/10 transition-colors">
+                              <div className="p-2.5 rounded-full bg-current/10 shrink-0"><Heart className="w-5 h-5 opacity-80" /></div>
                               <div>
-                                 <h4 className="text-xl font-bold mb-1">1. Grounding <span className="opacity-50 text-sm font-normal ml-2">(10 mins)</span></h4>
-                                 <p className="text-base opacity-80 leading-relaxed">Centering exercises to bring focus to the present moment and leave the day's noise behind.</p>
+                                 <h4 className="text-lg font-bold mb-0.5">1. Grounding <span className="opacity-50 text-xs font-normal ml-2">(10 mins)</span></h4>
+                                 <p className="text-sm opacity-80 leading-relaxed">Centering exercises to bring focus to the present moment and leave the day's noise behind.</p>
                               </div>
                            </div>
-                           <div className="flex gap-6 items-start p-6 rounded-3xl bg-black/5 border border-current/10 hover:bg-black/10 transition-colors">
-                              <div className="p-3 rounded-full bg-current/10 shrink-0"><Compass className="w-6 h-6 opacity-80" /></div>
+                           <div className="flex gap-5 items-start p-5 rounded-2xl bg-black/5 border border-current/10 hover:bg-black/10 transition-colors">
+                              <div className="p-2.5 rounded-full bg-current/10 shrink-0"><Compass className="w-5 h-5 opacity-80" /></div>
                               <div>
-                                 <h4 className="text-xl font-bold mb-1">2. Discovery <span className="opacity-50 text-sm font-normal ml-2">(30 mins)</span></h4>
-                                 <p className="text-base opacity-80 leading-relaxed">Interactive workshops, safe role-playing, and cognitive framing to build real skills.</p>
+                                 <h4 className="text-lg font-bold mb-0.5">2. Discovery <span className="opacity-50 text-xs font-normal ml-2">(30 mins)</span></h4>
+                                 <p className="text-sm opacity-80 leading-relaxed">Interactive workshops, safe role-playing, and cognitive framing to build real skills.</p>
                               </div>
                            </div>
-                           <div className="flex gap-6 items-start p-6 rounded-3xl bg-black/5 border border-current/10 hover:bg-black/10 transition-colors">
-                              <div className="p-3 rounded-full bg-current/10 shrink-0"><ShieldCheck className="w-6 h-6 opacity-80" /></div>
+                           <div className="flex gap-5 items-start p-5 rounded-2xl bg-black/5 border border-current/10 hover:bg-black/10 transition-colors">
+                              <div className="p-2.5 rounded-full bg-current/10 shrink-0"><ShieldCheck className="w-5 h-5 opacity-80" /></div>
                               <div>
-                                 <h4 className="text-xl font-bold mb-1">3. Integration <span className="opacity-50 text-sm font-normal ml-2">(20 mins)</span></h4>
-                                 <p className="text-base opacity-80 leading-relaxed">Actionable takeaways and structured journaling to apply today's growth to tomorrow's life.</p>
+                                 <h4 className="text-lg font-bold mb-0.5">3. Integration <span className="opacity-50 text-xs font-normal ml-2">(20 mins)</span></h4>
+                                 <p className="text-sm opacity-80 leading-relaxed">Actionable takeaways and structured journaling to apply today's growth to tomorrow's life.</p>
                               </div>
                            </div>
                          </div>
-                         <button onClick={() => setStep(0)} className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity pt-4">
-                           <ArrowLeft className="w-4 h-4" /> Go Back
+                         <button onClick={() => setStep(0)} className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity pt-2">
+                           <ArrowLeft className="w-3 h-3" /> Go Back
                          </button>
                        </div>
                      )}
 
                      {/* CTA STEPS (1-5) */}
                      {isCTA && step === 1 && (
-                       <div className="w-full pt-12">
-                         <h3 className="text-2xl md:text-3xl font-bold mb-10 text-white">Who is this journey for?</h3>
-                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto">
+                       <div className="w-full pt-8">
+                         <h3 className="text-xl md:text-2xl font-bold mb-8 text-white">Who is this journey for?</h3>
+                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg mx-auto">
                            {whoOptions.map(opt => (
-                             <button key={opt} onClick={() => { setFormData({...formData, who: opt}); setStep(2); }} className={`p-6 rounded-2xl ${ctaBtnBg} ${ctaBtnText} font-bold text-xl hover:scale-[1.02] transition-all shadow-lg border-2 border-transparent hover:border-white/30 text-center`}>
+                             <button key={opt} onClick={() => { setFormData({...formData, who: opt}); setStep(2); }} className={`p-5 rounded-2xl ${ctaBtnBg} ${ctaBtnText} font-bold text-lg hover:scale-[1.02] transition-all shadow-lg border-2 border-transparent hover:border-white/30 text-center`}>
                                {opt}
                              </button>
                            ))}
@@ -515,11 +515,11 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                      )}
 
                      {isCTA && step === 2 && (
-                       <div className="w-full pt-12">
-                         <h3 className="text-2xl md:text-3xl font-bold mb-10 text-white">What would you like to focus on?</h3>
-                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto">
+                       <div className="w-full pt-8">
+                         <h3 className="text-xl md:text-2xl font-bold mb-8 text-white">What would you like to focus on?</h3>
+                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg mx-auto">
                            {focusOptions.map(opt => (
-                             <button key={opt} onClick={() => { setFormData({...formData, focus: opt}); setStep(3); }} className={`p-6 rounded-2xl ${ctaBtnBg} ${ctaBtnText} font-bold text-xl hover:scale-[1.02] transition-all shadow-lg border-2 border-transparent hover:border-white/30 text-center`}>
+                             <button key={opt} onClick={() => { setFormData({...formData, focus: opt}); setStep(3); }} className={`p-5 rounded-2xl ${ctaBtnBg} ${ctaBtnText} font-bold text-lg hover:scale-[1.02] transition-all shadow-lg border-2 border-transparent hover:border-white/30 text-center`}>
                                {opt}
                              </button>
                            ))}
@@ -528,37 +528,37 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                      )}
 
                      {isCTA && step === 3 && (
-                       <div className="w-full pt-12">
-                         <h3 className="text-2xl md:text-3xl font-bold mb-8 text-center uppercase tracking-tighter text-white">You're in the right place.</h3>
-                         <div className="max-w-2xl mx-auto p-8 rounded-[2.5rem] bg-white/10 backdrop-blur-xl border border-white/20 flex flex-col md:flex-row items-center gap-8 text-left mb-12 shadow-2xl">
-                            <div className="w-24 h-24 rounded-full bg-white/20 flex items-center justify-center shrink-0 border-2 border-white/30">
-                              <User className="w-12 h-12 text-white" />
+                       <div className="w-full pt-8">
+                         <h3 className="text-xl md:text-2xl font-bold mb-6 text-center uppercase tracking-tighter text-white">You're in the right place.</h3>
+                         <div className="max-w-xl mx-auto p-6 rounded-[2rem] bg-white/10 backdrop-blur-xl border border-white/20 flex flex-col md:flex-row items-center gap-6 text-left mb-8 shadow-2xl">
+                            <div className="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center shrink-0 border-2 border-white/30">
+                              <User className="w-10 h-10 text-white" />
                             </div>
                             <div className="text-white">
-                              <h4 className="text-2xl font-bold mb-2">Our Certified Experts</h4>
-                              <p className="text-lg opacity-90 italic mb-4 font-medium leading-relaxed">"Our team of psychologists specializes in {formData.focus.toLowerCase()} for {formData.who.toLowerCase()}."</p>
-                              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest opacity-70">
-                                <ShieldCheck className="w-4 h-4 text-brand-accent" /> PhD & Clinical Credentials
+                              <h4 className="text-xl font-bold mb-1">Our Certified Experts</h4>
+                              <p className="text-base opacity-90 italic mb-3 font-medium leading-relaxed">"Our team of psychologists specializes in {formData.focus.toLowerCase()} for {formData.who.toLowerCase()}."</p>
+                              <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-70">
+                                <ShieldCheck className="w-3.5 h-3.5 text-brand-accent" /> PhD & Clinical Credentials
                               </div>
                             </div>
                          </div>
-                         <button onClick={nextStep} className={`px-10 py-6 rounded-full ${ctaBtnBg} ${ctaBtnText} font-black text-lg md:text-xl hover:scale-105 transition-all shadow-xl mx-auto block uppercase tracking-widest`}>
+                         <button onClick={nextStep} className={`px-8 py-5 rounded-full ${ctaBtnBg} ${ctaBtnText} font-black text-base md:text-lg hover:scale-105 transition-all shadow-xl mx-auto block uppercase tracking-widest`}>
                            Let's Map Your Path
                          </button>
                        </div>
                      )}
 
                      {isCTA && step === 4 && (
-                       <div className="w-full max-w-xl mx-auto pt-12">
-                         <h3 className="text-2xl md:text-3xl font-bold mb-8 text-center uppercase tracking-tighter text-white">Almost there...</h3>
-                         <p className="text-lg opacity-90 mb-10 text-center font-medium leading-relaxed text-white">We'll reach out to schedule your free 15-minute discovery call.</p>
-                         <div className="space-y-4 text-left">
-                           <input value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} type="text" placeholder="Your Name" className="w-full p-6 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-lg text-white placeholder:text-white/40 font-bold" />
-                           <input value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} type="email" placeholder="Your Email (ending in .com)" className="w-full p-6 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-lg text-white placeholder:text-white/40 font-bold" />
+                       <div className="w-full max-w-lg mx-auto pt-8">
+                         <h3 className="text-xl md:text-2xl font-bold mb-6 text-center uppercase tracking-tighter text-white">Almost there...</h3>
+                         <p className="text-base opacity-90 mb-8 text-center font-medium leading-relaxed text-white">We'll reach out to schedule your free 15-minute discovery call.</p>
+                         <div className="space-y-3 text-left">
+                           <input value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} type="text" placeholder="Your Name" className="w-full p-5 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-base text-white placeholder:text-white/40 font-bold" />
+                           <input value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} type="email" placeholder="Your Email (ending in .com)" className="w-full p-5 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-base text-white placeholder:text-white/40 font-bold" />
                            
-                           {error && <p className="text-red-400 font-bold text-center animate-pulse">{error}</p>}
+                           {error && <p className="text-red-400 text-sm font-bold text-center animate-pulse">{error}</p>}
                            
-                           <button onClick={handleConfirm} className={`w-full p-6 rounded-2xl ${ctaBtnBg} ${ctaBtnText} font-black text-xl hover:shadow-[0_0_60px_rgba(227,213,255,0.3)] transition-all shadow-xl uppercase tracking-widest`}>
+                           <button onClick={handleConfirm} className={`w-full p-5 rounded-2xl ${ctaBtnBg} ${ctaBtnText} font-black text-lg hover:shadow-[0_0_60px_rgba(227,213,255,0.3)] transition-all shadow-xl uppercase tracking-widest`}>
                              Confirm My Request
                            </button>
                          </div>
@@ -566,16 +566,16 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                      )}
 
                      {isCTA && step === 5 && (
-                       <div className="w-full text-center py-12">
-                          <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-8">
-                            <ShieldCheck className="w-10 h-10 text-green-500" />
+                       <div className="w-full text-center py-8">
+                          <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <ShieldCheck className="w-8 h-8 text-green-500" />
                           </div>
-                          <h3 className="text-3xl md:text-4xl font-bold mb-4 text-white tracking-tight">Confirmed.</h3>
-                          <div className="max-w-md mx-auto space-y-6 text-white text-center">
-                            <p className="text-lg md:text-xl opacity-90">
+                          <h3 className="text-2xl md:text-3xl font-bold mb-3 text-white tracking-tight">Confirmed.</h3>
+                          <div className="max-w-sm mx-auto space-y-4 text-white text-center">
+                            <p className="text-base md:text-lg opacity-90">
                               Thanks, {formData.name.split(' ')[0]}. We'll reach out to <span className="font-bold underline">{formData.email}</span> within 24 hours.
                             </p>
-                            <button onClick={resetFlow} className="mt-8 text-white/50 hover:text-white underline underline-offset-8 transition-colors font-bold uppercase tracking-widest text-xs">
+                            <button onClick={resetFlow} className="mt-6 text-white/50 hover:text-white underline underline-offset-8 transition-colors font-bold uppercase tracking-widest text-[10px]">
                               Return to Home
                             </button>
                           </div>
@@ -600,7 +600,7 @@ function ActiveView({ data, onClose, onNavigate }: any) {
              <div className="absolute w-[40vw] h-[40vw] rounded-full border border-current opacity-10 animate-[spin_40s_linear_infinite]" />
              <div className="absolute w-[30vw] h-[30vw] rounded-full border border-current opacity-20 animate-[spin_30s_linear_infinite_reverse]" />
              <div className="absolute w-[20vw] h-[20vw] rounded-full border border-current opacity-30" />
-             <data.icon className="w-64 h-64 opacity-10 animate-pulse" />
+             <data.icon className="w-48 h-48 opacity-10 animate-pulse" />
            </div>
          </motion.div>
        </div>
