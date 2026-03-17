@@ -236,15 +236,23 @@ function Quadrant({ data, hovered, setHovered, setActive, isMobile, isVisible, i
           <div className="mt-4 w-full flex justify-center min-h-[5rem]">
             <AnimatePresence mode="wait">
               {isHovered ? (
-                <motion.p 
-                  key="content"
-                  initial={{ opacity: 0, y: 10 }}
+                <motion.div 
+                  key="action"
+                  initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="text-sm md:text-base lg:text-lg opacity-80 max-w-md font-medium leading-relaxed px-6"
+                  exit={{ opacity: 0, y: -15 }}
+                  className="flex flex-col items-center gap-3"
                 >
-                  {data.content.substring(0, 100)}...
-                </motion.p>
+                  <span className="text-sm md:text-lg font-bold uppercase tracking-[0.3em] opacity-80">
+                    {data.action}
+                  </span>
+                  <motion.div
+                    animate={{ x: [0, 8, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <ArrowRight className="w-6 h-6 md:w-8 md:h-8 opacity-60" />
+                  </motion.div>
+                </motion.div>
               ) : (
                 <motion.p 
                   key="subtitle"
