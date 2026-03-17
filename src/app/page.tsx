@@ -205,8 +205,8 @@ function Quadrant({ data, hovered, setHovered, setActive, isMobile, isVisible, i
         flexGrow: flexGrow 
       } : {}}
       transition={{ 
-        opacity: { duration: 0.8, delay: index * 0.1 },
-        scale: { duration: 1, delay: index * 0.1, ease: "easeOut" },
+        opacity: { duration: 2.5, delay: index * 0.4 },
+        scale: { duration: 2.5, delay: index * 0.4, ease: "easeOut" },
         flexGrow: { type: "spring", stiffness: 300, damping: 30 }
       }}
       className="relative flex flex-col justify-center items-center cursor-pointer overflow-hidden group px-2 md:px-4"
