@@ -21,7 +21,7 @@ const quadrants = [
     textColor: "text-[#6A4C93]",
     hex: "#F4EEFF",
     icon: Brain,
-    content: "We are a dedicated mental fitness company committed to helping individuals develop a resilient, balanced, and high-performing mind. Just as physical fitness strengthens the body, mental fitness strengthens your ability to manage thoughts, regulate emotions, and shape positive behaviors.",
+    content: "We are committed to helping individuals develop a resilient, balanced, and high-performing mind. Just as physical fitness strengthens the body, fitness for mind strengthens your ability to manage thoughts, regulate emotions, and shape positive behaviors.",
     action: "Our Vision",
     pillars: [
       { icon: Shield, text: "Navigate challenges with confidence" },
@@ -38,20 +38,20 @@ const quadrants = [
     textColor: "text-[#2D3748]",
     hex: "#E3D5FF",
     icon: ShieldCheck,
-    content: "We focus on real-life application, ensuring you leave with strategies you can immediately use at home, school, or work. Our evidence-based tools are designed for immediate impact.",
+    content: "Our programs focus on real-world application, empowering participants with strategies they can immediately implement in both their professional and personal lives.",
     action: "Our Methods",
     methods: [
       "Interactive workshops",
-      "Guided activities & Reflective exercises",
-      "Group discussions",
+      "Guided activities",
+      "Reflective exercises",
       "Practical tools for everyday life"
     ],
     outcomes: [
-      "Manage thoughts with clarity",
+      "Manage thoughts with clarity and focus",
       "Regulate emotions effectively",
       "Build healthy behavioral patterns",
       "Improve resilience under stress",
-      "Strengthen confidence"
+      "Strengthen confidence and self-awareness"
     ]
   },
   {
@@ -62,13 +62,13 @@ const quadrants = [
     textColor: "text-white",
     hex: "#6A4C93",
     icon: Sparkles,
-    content: "Mental fitness needs evolve across life stages. We offer tailored programs specifically designed for where you are now.",
+    content: "We understand that fitness for the mind evolve across life stages. We offer tailored programs carefully designed and led by certified psychologists.",
     action: "Begin Your Path",
     programList: [
-      { title: "Children", icon: Smile, desc: "Building emotional intelligence, focus, and healthy habits early." },
-      { title: "Teens", icon: Compass, desc: "Developing resilience, stress management, and decision-making." },
-      { title: "Adults", icon: Briefcase, desc: "Enhancing leadership mindset and personal growth." },
-      { title: "Families", icon: Home, desc: "Strengthening communication and family dynamics." }
+      { title: "Children", icon: Smile, desc: "Building emotional intelligence, focus, confidence, and healthy habits early in life." },
+      { title: "Teens", icon: Compass, desc: "Developing resilience, stress management skills, self-esteem, and positive decision-making." },
+      { title: "Adults", icon: Briefcase, desc: "Enhancing emotional balance, leadership mindset, stress management, and personal growth." },
+      { title: "Families", icon: Home, desc: "Strengthening communication, emotional connection, and healthy family dynamics." }
     ]
   },
   {
@@ -79,7 +79,7 @@ const quadrants = [
     textColor: "text-[#E3D5FF]",
     hex: "#2D3748",
     icon: Activity,
-    content: "Join us in building a culture where mental fitness is prioritized, practiced, and celebrated. A healthy mind creates a powerful life.",
+    content: "Join us in building a culture where fitness for your mind is prioritized, practiced, and celebrated. Because a healthy mind creates a powerful life.",
     action: "Start Your Journey"
   },
 ];

@@ -16,7 +16,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Mindwise | A New Era of Mental Fitness",
+  title: "Mindwise | A New Era of Fitness for your Mind",
   description: "Scientifically designed events and structured activities to help you develop a resilient, balanced, and high-performing mind. Led by certified psychologists.",
 };
 

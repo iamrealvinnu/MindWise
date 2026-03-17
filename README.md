@@ -1,7 +1,7 @@
 # MindWise 🧠
-### **The Elastic Mental Fitness Ecosystem**
+### **The Elastic Fitness for your Mind Ecosystem**
 
-MindWise is a high-performance, immersive landing experience engineered to bridge the gap between human psychology and digital fluidity. Designed with a focus on **Human-Aligned UI**, the application utilizes elastic spatial animations and a multi-step discovery state machine to guide users through their mental fitness journey with unparalleled smoothness.
+MindWise is a high-performance, immersive landing experience engineered to bridge the gap between human psychology and digital fluidity. Designed with a focus on **Human-Aligned UI**, the application utilizes elastic spatial animations and a multi-step discovery state machine to guide users through their journey of fitness for the mind with unparalleled smoothness.
 
 ---
 

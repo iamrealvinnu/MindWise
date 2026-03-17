@@ -11,7 +11,11 @@ import {
   Sprout,
   Compass,
   Zap,
-  Leaf
+  Leaf,
+  Users,
+  MessageCircle,
+  TrendingUp,
+  Shield
 } from "lucide-react";
 
 const LogoOnly = ({ className = "" }) => (
@@ -50,60 +54,63 @@ export default function PhilosophyPage() {
             className="mb-20 text-center"
           >
             <span className="inline-block py-2 px-6 rounded-full bg-brand-primary/10 text-brand-primary font-bold text-sm tracking-[0.2em] uppercase mb-8">
-              Our Core Beliefs
+              Why Mindwise
             </span>
             <h1 className="text-6xl md:text-8xl font-bold font-poppins text-charcoal mb-10 leading-[1.1]">
-              The Mindwise <br />
-              <span className="text-gradient">Philosophy.</span>
+              Build a Stronger, <br />
+              <span className="text-gradient">Healthier Mind.</span>
             </h1>
             <p className="text-2xl md:text-3xl text-charcoal-light/80 leading-relaxed font-inter max-w-4xl mx-auto">
-              We believe that mental fitness is as essential as physical fitness. In a world that never stops, your mind is your greatest asset — it deserves to be trained, nourished, and strengthened.
+              Welcome to a new era where fitness of your mind matters. We are committed to helping individuals develop a resilient, balanced, and high-performing mind.
             </p>
           </motion.div>
 
-          {/* Core Pillars */}
-          <div className="grid md:grid-cols-2 gap-10 mb-24">
-            {[
-              {
-                title: "Proactive, Not Reactive",
-                desc: "We don't wait for a crisis to care for our minds. We build strength today to handle the challenges of tomorrow.",
-                icon: ShieldCheck,
-                color: "bg-blue-500/10 text-blue-600"
-              },
-              {
-                title: "Science-Backed",
-                desc: "Everything we do is rooted in modern neuroscience and psychological research. No fluff, just results.",
-                icon: Brain,
-                color: "bg-purple-500/10 text-purple-600"
-              },
-              {
-                title: "Holistic Integration",
-                desc: "Mental health isn't isolated. It's connected to your body, your environment, and your daily habits.",
-                icon: HeartPulse,
-                color: "bg-rose-500/10 text-rose-600"
-              },
-              {
-                title: "Lifelong Growth",
-                desc: "The brain is plastic. You can always improve your emotional intelligence, focus, and resilience at any age.",
-                icon: Sprout,
-                color: "bg-emerald-500/10 text-emerald-600"
-              }
-            ].map((pillar, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="glass-card p-12 hover:bg-white"
-              >
-                <div className={`w-16 h-16 ${pillar.color} rounded-2xl flex items-center justify-center mb-8`}>
-                  <pillar.icon className="w-8 h-8" />
-                </div>
-                <h3 className="text-3xl font-bold text-charcoal mb-6">{pillar.title}</h3>
-                <p className="text-xl text-charcoal-light/80 leading-relaxed">{pillar.desc}</p>
-              </motion.div>
-            ))}
+          {/* Why Mind needs to be fit section */}
+          <div className="mb-24">
+            <h2 className="text-4xl font-bold font-poppins text-charcoal mb-12 text-center uppercase tracking-tight">Why Mind needs to be fit?</h2>
+            <div className="grid md:grid-cols-2 gap-10">
+              {[
+                {
+                  title: "Navigate Challenges",
+                  desc: "A resilient mind helps you to navigate challenges with confidence and clarity.",
+                  icon: Shield,
+                  color: "bg-blue-500/10 text-blue-600"
+                },
+                {
+                  title: "Meaningful Relationships",
+                  desc: "Fitness for mind strengthens your ability to build and maintain healthy, meaningful connections.",
+                  icon: Users,
+                  color: "bg-purple-500/10 text-purple-600"
+                },
+                {
+                  title: "Thoughtful Decisions",
+                  desc: "Empower yourself to make thoughtful decisions that align with your values and goals.",
+                  icon: Brain,
+                  color: "bg-rose-500/10 text-rose-600"
+                },
+                {
+                  title: "Thrive Overall",
+                  desc: "Invest in your mind to thrive personally and professionally in today's fast-paced world.",
+                  icon: TrendingUp,
+                  color: "bg-emerald-500/10 text-emerald-600"
+                }
+              ].map((pillar, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="glass-card p-12 hover:bg-white"
+                >
+                  <div className={`w-16 h-16 ${pillar.color} rounded-2xl flex items-center justify-center mb-8`}>
+                    <pillar.icon className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-3xl font-bold text-charcoal mb-6">{pillar.title}</h3>
+                  <p className="text-xl text-charcoal-light/80 leading-relaxed">{pillar.desc}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
           {/* Deep Quote */}
@@ -117,7 +124,7 @@ export default function PhilosophyPage() {
              <div className="relative z-10">
                <Compass className="w-16 h-16 text-brand-accent mx-auto mb-10 opacity-50" />
                <p className="text-3xl md:text-5xl font-poppins font-medium leading-[1.2] mb-12 italic">
-                 "True strength is not just enduring the storm, but learning how to navigate with a calm and resilient mind."
+                 "Just as physical fitness strengthens the body, fitness for mind strengthens your ability to manage thoughts, regulate emotions, and shape positive behaviors."
                </p>
                <div className="w-20 h-1 bg-brand-accent mx-auto mb-8" />
                <p className="text-xl text-white/50 font-bold tracking-widest uppercase">The Mindwise Mission</p>

@@ -58,7 +58,7 @@ export default function ApproachPage() {
               <span className="text-gradient">Framework.</span>
             </h1>
             <p className="text-2xl md:text-3xl text-charcoal-light/80 leading-relaxed font-inter max-w-4xl mx-auto">
-              We move beyond theory. Our approach is designed for real-world impact, giving you the tools to transform your mental landscape through action and reflection.
+              We move beyond theory. Our approach is designed for real-world impact, empowering you with strategies to strengthen your mind through action and reflection.
             </p>
           </motion.div>
 
@@ -67,26 +67,26 @@ export default function ApproachPage() {
              {[
                {
                  step: "01",
-                 title: "Scientific Assessment",
-                 desc: "We start by understanding your unique mental baseline using validated psychological frameworks.",
+                 title: "Expert Design",
+                 desc: "Our programs are carefully designed and led by certified psychologists, ensuring every session is evidence-based and impactful.",
                  icon: Target
                },
                {
                  step: "02",
-                 title: "Immersive Learning",
-                 desc: "Engage in workshops and activities that challenge your current patterns and open new perspectives.",
+                 title: "Interactive Learning",
+                 desc: "Engage in workshops and guided activities that help you manage thoughts with clarity and focus.",
                  icon: Lightbulb
                },
                {
                  step: "03",
-                 title: "Applied Practice",
-                 desc: "Take the tools into your daily life. We provide the structure to ensure new habits actually stick.",
+                 title: "Practical Tools",
+                 desc: "We provide tools for everyday life that you can immediately implement in both your professional and personal life.",
                  icon: Wrench
                },
                {
                  step: "04",
-                 title: "Reflective Integration",
-                 desc: "Deepen the growth through guided reflection and group discussions to solidify your progress.",
+                 title: "Reflective Growth",
+                 desc: "Strengthen confidence and self-awareness through reflective exercises designed for lasting resilience.",
                  icon: MessageCircle
                }
              ].map((item, i) => (
@@ -113,12 +113,13 @@ export default function ApproachPage() {
 
           {/* Tools Grid */}
           <div className="glass-card p-12 md:p-20 bg-brand-primary text-white">
-            <h2 className="text-4xl md:text-5xl font-bold font-poppins mb-12 text-center">Our Toolkit</h2>
-            <div className="grid md:grid-cols-3 gap-10">
+            <h2 className="text-4xl md:text-5xl font-bold font-poppins mb-12 text-center">Our Sessions Combine</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
               {[
-                { title: "Workshops", icon: Users2, text: "Expert-led sessions" },
-                { title: "Guided Exercises", icon: Activity, text: "Practical mental training" },
-                { title: "Digital Resources", icon: BookOpen, text: "Tools for daily use" }
+                { title: "Workshops", icon: Users2, text: "Interactive sessions" },
+                { title: "Guided Activities", icon: Activity, text: "Hands-on experience" },
+                { title: "Reflective Exercises", icon: BookOpen, text: "Deepening awareness" },
+                { title: "Practical Tools", icon: Wrench, text: "Everyday application" }
               ].map((tool, i) => (
                 <div key={i} className="text-center">
                   <div className="w-20 h-20 bg-white/10 rounded-3xl flex items-center justify-center mx-auto mb-6">

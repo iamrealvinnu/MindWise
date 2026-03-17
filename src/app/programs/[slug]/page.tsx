@@ -24,7 +24,7 @@ const programData = {
     title: "Children's Program",
     icon: Smile,
     color: "from-blue-400 to-cyan-400",
-    description: "Building emotional intelligence, focus, and healthy habits early in life. Our program for children (ages 6-12) uses play-based learning and creative exercises to develop foundational mental fitness.",
+    description: "Building emotional intelligence, focus, confidence, and healthy habits early in life. Our program for children uses play-based learning and creative exercises to develop foundational fitness for their growing minds.",
     highlights: [
       "Identifying and naming emotions",
       "Simple mindfulness and breathing techniques",
@@ -41,7 +41,7 @@ const programData = {
     title: "Teen Program",
     icon: Target,
     color: "from-purple-400 to-indigo-400",
-    description: "Developing resilience, stress management skills, and positive decision-making. Designed for ages 13-18, this program addresses the unique challenges of adolescence in the digital age.",
+    description: "Developing resilience, stress management skills, self-esteem, and positive decision-making. Designed for ages 13-18, this program addresses the unique challenges of adolescence with a focus on building a strong, healthy mind.",
     highlights: [
       "Managing academic and social stress",
       "Building a healthy relationship with technology",
@@ -58,7 +58,7 @@ const programData = {
     title: "Adult Program",
     icon: Sprout,
     color: "from-emerald-400 to-teal-400",
-    description: "Enhancing emotional balance, leadership mindset, and personal growth. Our adult program focuses on practical strategies for managing the complexities of professional and personal life.",
+    description: "Enhancing emotional balance, leadership mindset, stress management, and personal growth. Our adult program focuses on practical strategies for managing the complexities of professional and personal life.",
     highlights: [
       "Advanced stress regulation techniques",
       "Mindful leadership and focus",
@@ -75,12 +75,12 @@ const programData = {
     title: "Parents & Families",
     icon: Users,
     color: "from-orange-400 to-rose-400",
-    description: "Strengthening communication, emotional connection, and healthy family dynamics. We help parents lead by example while building a supportive home environment for everyone.",
+    description: "Strengthening communication, emotional connection, and healthy family dynamics. We help parents lead by example while building a supportive home environment where fitness for the mind is prioritized and practiced.",
     highlights: [
       "Emotion-focused parenting strategies",
       "Conflict resolution within the family",
       "Managing parental burnout",
-      "Creating family rituals for mental wellness"
+      "Creating family rituals for a healthy mind"
     ],
     details: [
       { icon: Clock, label: "Duration", value: "6-Week Workshop Series" },
@@ -188,7 +188,7 @@ export default function ProgramPage() {
                   Why This Program?
                 </h2>
                 <p className="text-xl text-white/90 leading-relaxed mb-10">
-                  Every stage of life brings different mental challenges. Our {program.title} is specifically designed by certified psychologists to address the neurological and social needs of this age group.
+                  Every stage of life brings different challenges for the mind. Our {program.title} is specifically designed by certified psychologists to address the neurological and social needs of this age group through evidence-based practice.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <span className="px-6 py-3 bg-white/20 rounded-full text-sm font-bold uppercase tracking-wider">Expert Led</span>
@@ -234,7 +234,7 @@ export default function ProgramPage() {
                 <ShieldCheck className="w-12 h-12 text-brand-accent mb-6" />
                 <h3 className="text-xl font-bold mb-4">Psychologist Verified</h3>
                 <p className="text-white/70 leading-relaxed">
-                  All our programs are audited and updated quarterly based on the latest neurological research and clinical findings.
+                  All our programs are audited and updated quarterly based on the latest research and clinical findings in fitness for the mind.
                 </p>
               </motion.div>
             </div>
