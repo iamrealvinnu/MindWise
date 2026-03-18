@@ -535,12 +535,12 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                          <h3 className="text-xl font-bold mb-4 opacity-90 text-black">What We Do</h3>
                          <div className="space-y-6 text-left text-black px-6 py-8 md:px-12 md:py-10">
                            <p className="text-base md:text-lg font-medium mb-4 text-black">We curate scientifically designed events and structured activities that help individuals:</p>
-                           <div className="flex flex-wrap gap-4 mt-2">
-                             <span className="px-6 py-3 rounded-full bg-black/20 text-black font-semibold text-sm md:text-base shadow-sm">Manage thoughts with clarity and focus</span>
-                             <span className="px-6 py-3 rounded-full bg-black/20 text-black font-semibold text-sm md:text-base shadow-sm">Regulate emotions effectively</span>
-                             <span className="px-6 py-3 rounded-full bg-black/20 text-black font-semibold text-sm md:text-base shadow-sm">Build healthy behavioral patterns</span>
-                             <span className="px-6 py-3 rounded-full bg-black/20 text-black font-semibold text-sm md:text-base shadow-sm">Improve resilience under stress</span>
-                             <span className="px-6 py-3 rounded-full bg-black/20 text-black font-semibold text-sm md:text-base shadow-sm">Strengthen confidence and self-awareness</span>
+                           <div className="flex flex-row flex-wrap gap-4 mt-2 justify-center items-center">
+                             <span className="px-6 py-3 rounded-full bg-black/20 text-black font-semibold text-sm md:text-base shadow-sm whitespace-nowrap">Manage thoughts with clarity and focus</span>
+                             <span className="px-6 py-3 rounded-full bg-black/20 text-black font-semibold text-sm md:text-base shadow-sm whitespace-nowrap">Regulate emotions effectively</span>
+                             <span className="px-6 py-3 rounded-full bg-black/20 text-black font-semibold text-sm md:text-base shadow-sm whitespace-nowrap">Build healthy behavioral patterns</span>
+                             <span className="px-6 py-3 rounded-full bg-black/20 text-black font-semibold text-sm md:text-base shadow-sm whitespace-nowrap">Improve resilience under stress</span>
+                             <span className="px-6 py-3 rounded-full bg-black/20 text-black font-semibold text-sm md:text-base shadow-sm whitespace-nowrap">Strengthen confidence and self-awareness</span>
                            </div>
                            <p className="mt-8 text-base md:text-lg font-semibold text-black">All our programs are carefully designed and led by certified psychologists, ensuring that every session is evidence-based, practical, and impactful.</p>
                          </div>
