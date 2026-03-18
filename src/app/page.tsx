@@ -15,7 +15,7 @@ type SectionId = "philosophy" | "approach" | "programs" | "cta" | null;
 const quadrants = [
   {
     id: "philosophy",
-    title: "Philosophy",
+  title: "Why MindWise",
     subtitle: "The Foundation",
     color: "bg-[#F4EEFF]",
     textColor: "text-[#6A4C93]",
@@ -46,13 +46,6 @@ const quadrants = [
       "Reflective exercises",
       "Practical tools for everyday life"
     ],
-    outcomes: [
-      "Manage thoughts with clarity and focus",
-      "Regulate emotions effectively",
-      "Build healthy behavioral patterns",
-      "Improve resilience under stress",
-      "Strengthen confidence and self-awareness"
-    ]
   },
   {
     id: "programs",
@@ -79,7 +72,11 @@ const quadrants = [
     textColor: "text-[#E3D5FF]",
     hex: "#2D3748",
     icon: Activity,
-    content: "Join us in building a culture where fitness for your mind is prioritized, practiced, and celebrated. Because a healthy mind creates a powerful life.",
+    content: [
+      "Join us in building a culture where fitness for your mind is prioritized, practiced, and celebrated.",
+      "Because a healthy mind creates a powerful life.",
+      "Developed by psychologists based on research."
+    ],
     action: "Start Your Journey"
   },
 ];
@@ -103,14 +100,18 @@ export default function UniqueLanding() {
   const [active, setActive] = useState<SectionId>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [showQuadrants, setShowQuadrants] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener("resize", checkMobile);
     
-    // THE SOLO LOGO PHASE: 3.5 seconds of just the logo breathing
-    const timer = setTimeout(() => setShowQuadrants(true), 3500);
+    // Intro sequence: 4.5 seconds of high-priority loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+      setShowQuadrants(true);
+    }, 4500);
     
     return () => {
       window.removeEventListener("resize", checkMobile);
@@ -128,35 +129,59 @@ export default function UniqueLanding() {
         <div className="absolute -bottom-[10%] left-[20%] w-[50%] h-[50%] bg-brand-primary/10 blur-[120px] rounded-full animate-pulse" />
       </div>
 
-      {/* Central Interactive Logo */}
+      {/* High-Priority Loading Intro */}
       <AnimatePresence>
-        {!active && (
+        {isLoading && (
           <motion.div
-            initial={{ scale: 0, opacity: 0, rotate: -180 }}
-            animate={{ 
-              scale: 1, 
-              opacity: 1, 
-              rotate: 0,
-              y: [0, -15, 0], 
+            key="loading-screen"
+            initial={{ opacity: 1 }}
+            exit={{ 
+              opacity: 0, 
+              scale: 1.05, 
+              filter: "blur(20px)",
+              transition: { duration: 1.2, ease: "easeInOut" } 
             }}
-            exit={{ scale: 0.5, opacity: 0 }}
-            transition={{ 
-              scale: { type: "spring", stiffness: 300, damping: 15 },
-              rotate: { duration: 1 },
-              y: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-            }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none"
+            className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#E2DBF0]"
           >
-            <motion.div 
-              animate={{ scale: [1, 1.03, 1] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="relative w-32 h-32 md:w-60 md:h-60 rounded-full bg-white/25 backdrop-blur-3xl border border-white/30 shadow-[0_30px_100px_rgba(106,76,147,0.3)] flex items-center justify-center p-4 md:p-10 overflow-hidden"
+            {/* Logo breathing and floating */}
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0, rotate: -45 }}
+              animate={{ 
+                scale: 1, 
+                opacity: 1, 
+                rotate: 0,
+                y: [0, -15, 0], 
+              }}
+              transition={{ 
+                scale: { duration: 1.5, ease: "easeOut" },
+                rotate: { duration: 1.5, ease: "easeOut" },
+                y: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+              }}
+              className="relative w-40 h-40 md:w-64 md:h-64 rounded-full bg-white/30 backdrop-blur-3xl border border-white/40 shadow-[0_30px_100px_rgba(106,76,147,0.25)] flex items-center justify-center p-6 md:p-12 overflow-hidden mb-12"
             >
-              <div className="absolute inset-0 rounded-full border border-brand-primary/15 animate-[spin_15s_linear_infinite]" />
-              <div className="absolute inset-4 rounded-full border border-brand-primary/10 animate-[spin_20s_linear_infinite_reverse]" />
-              <div className="relative w-[95%] h-[95%] flex items-center justify-center">
-                <LogoOnly className="w-full h-full drop-shadow-2xl" />
+              <div className="absolute inset-0 rounded-full border border-brand-primary/20 animate-[spin_12s_linear_infinite]" />
+              <div className="absolute inset-4 rounded-full border border-brand-primary/10 animate-[spin_18s_linear_infinite_reverse]" />
+              <div className="relative w-full h-full flex items-center justify-center">
+                <LogoOnly className="w-full h-full" />
               </div>
+            </motion.div>
+
+            {/* Requested Brand Line */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 1 }}
+              className="flex flex-col items-center text-center px-6"
+            >
+              <p className="text-brand-primary text-xl md:text-3xl font-poppins font-bold tracking-tight uppercase">
+                Built on Research. <span className="text-charcoal">Designed for Resilience.</span>
+              </p>
+              <motion.div 
+                initial={{ width: 0 }}
+                animate={{ width: "100%" }}
+                transition={{ delay: 1.5, duration: 2, ease: "easeInOut" }}
+                className="h-[1px] bg-gradient-to-r from-transparent via-brand-primary/40 to-transparent mt-6 w-64 md:w-96"
+              />
             </motion.div>
           </motion.div>
         )}
@@ -164,6 +189,27 @@ export default function UniqueLanding() {
 
       {/* Grid Canvas - FORCED 2x2 ON ALL SCREENS */}
       <div className="w-full h-full flex flex-col relative z-10">
+        {/* Central Logo Overlay */}
+        {showQuadrants && !active && (
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0, y: 0 }}
+            animate={{ scale: 1, opacity: 1, y: [0, -10, 0] }}
+            transition={{
+              scale: { duration: 1.2, ease: "easeOut" },
+              opacity: { duration: 1.2, ease: "easeOut" },
+              y: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+            }}
+            className="pointer-events-none absolute left-1/2 top-1/2 z-30 -translate-x-1/2 -translate-y-1/2"
+          >
+            <div className="relative w-40 h-40 md:w-64 md:h-64 rounded-full bg-white/30 backdrop-blur-3xl border border-white/40 shadow-[0_30px_100px_rgba(106,76,147,0.25)] flex items-center justify-center p-6 md:p-12 overflow-hidden">
+              <div className="absolute inset-0 rounded-full border border-brand-primary/20 animate-[spin_12s_linear_infinite]" />
+              <div className="absolute inset-4 rounded-full border border-brand-primary/10 animate-[spin_18s_linear_infinite_reverse]" />
+              <div className="relative w-full h-full flex items-center justify-center">
+                <LogoOnly className="w-full h-full" />
+              </div>
+            </div>
+          </motion.div>
+        )}
         {/* Top Half */}
         <div className="flex-1 flex flex-row">
           <Quadrant data={quadrants[0]} hovered={hovered} setHovered={setHovered} setActive={setActive} isMobile={isMobile} isVisible={showQuadrants} index={0} />
@@ -281,13 +327,13 @@ function Quadrant({ data, hovered, setHovered, setActive, isMobile, isVisible, i
 function ActiveView({ data, onClose, onNavigate }: any) {
   const [step, setStep] = useState(0); 
   
-  const [formData, setFormData] = useState({ who: "", focus: "", name: "", email: "" });
+  const [formData, setFormData] = useState({ who: "", focus: "", name: "", email: "", phone: "", country: "+1", otherText: "" });
   const [error, setError] = useState("");
 
   const nextStep = () => setStep(s => s + 1);
   const resetFlow = () => { 
     setStep(0); 
-    setFormData({ who: "", focus: "", name: "", email: "" });
+    setFormData({ who: "", focus: "", name: "", email: "", phone: "", country: "+1", otherText: "" });
     setError("");
     onClose(); 
   };
@@ -302,8 +348,13 @@ function ActiveView({ data, onClose, onNavigate }: any) {
 
   const handleConfirm = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.com$/;
+    const phoneRegex = /^\d{7,15}$/;
     if (!formData.name.trim()) {
-      setError("Please provide your name.");
+      setError("Please provide your first name.");
+      return;
+    }
+    if (!formData.phone.trim() || !phoneRegex.test(formData.phone.trim())) {
+      setError("Please provide a valid phone number (digits only, 7-15 numbers)");
       return;
     }
     if (!emailRegex.test(formData.email)) {
@@ -361,9 +412,23 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                      <h3 className="text-lg md:text-2xl font-light opacity-80 mb-6 tracking-wide italic text-inherit">
                        {data.subtitle}
                      </h3>
-                     <p className="text-base md:text-lg leading-relaxed opacity-90 max-w-2xl font-inter mb-16 text-inherit">
-                       {data.content}
-                     </p>
+                     {Array.isArray(data.content) ? (
+                       <>
+                         <p className="text-base md:text-lg leading-relaxed opacity-90 max-w-2xl font-inter mb-6 text-inherit">
+                           {data.content[0]}
+                         </p>
+                         <p className="text-xl md:text-2xl font-bold text-brand-accent mb-2 mt-4 text-inherit">
+                           {data.content[1]}
+                         </p>
+                         <p className="text-sm md:text-base font-semibold text-white/80 mb-10 mt-2 text-inherit">
+                           {data.content[2]}
+                         </p>
+                       </>
+                     ) : (
+                       <p className="text-base md:text-lg leading-relaxed opacity-90 max-w-2xl font-inter mb-16 text-inherit">
+                         {data.content}
+                       </p>
+                     )}
 
                      {!isCTA && (
                        <>
@@ -378,25 +443,29 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                            </div>
                          )}
                          {data.methods && (
-                           <div className="space-y-8 mb-12 text-left text-inherit">
+                           <div className="mb-12 text-left text-inherit">
                              <h4 className="text-lg font-bold uppercase tracking-widest opacity-60 mb-4 flex items-center gap-3">
                                <CheckCircle2 className="w-4 h-4" /> Our Sessions Combine
                              </h4>
-                             <ul className="space-y-3">
+                             <div className="flex flex-wrap gap-3">
                                {data.methods.map((method: string, i: number) => (
-                                 <li key={i} className="text-lg md:text-xl font-medium flex items-start gap-4">
-                                   <span className="w-2 h-2 rounded-full bg-current mt-2.5 shrink-0 opacity-50" />
+                                 <span
+                                   key={i}
+                                   className="px-4 py-2 rounded-2xl bg-current/10 border border-current/20 font-semibold text-sm md:text-base text-inherit whitespace-nowrap shadow-sm"
+                                 >
                                    {method}
-                                 </li>
-                               ))}
-                             </ul>
-                             <div className="flex flex-wrap gap-2 mt-6">
-                               {data.outcomes.map((outcome: string, i: number) => (
-                                 <span key={i} className="px-4 py-1.5 rounded-full border-2 border-current font-bold text-xs uppercase tracking-wider opacity-90">
-                                   {outcome}
                                  </span>
                                ))}
                              </div>
+                             {Array.isArray(data.outcomes) && data.outcomes.length > 0 && (
+                               <div className="flex flex-wrap gap-2 mt-6">
+                                 {data.outcomes.map((outcome: string, i: number) => (
+                                   <span key={i} className="px-4 py-1.5 rounded-full border-2 border-current font-bold text-xs uppercase tracking-wider opacity-90">
+                                     {outcome}
+                                   </span>
+                                 ))}
+                               </div>
+                             )}
                            </div>
                          )}
                          {data.programList && (
@@ -506,23 +575,101 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                          <h3 className="text-xl md:text-2xl font-bold mb-8 text-white">Who is this journey for?</h3>
                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg mx-auto">
                            {whoOptions.map(opt => (
-                             <button key={opt} onClick={() => { setFormData({...formData, who: opt}); setStep(2); }} className={`p-5 rounded-2xl ${ctaBtnBg} ${ctaBtnText} font-bold text-lg hover:scale-[1.02] transition-all shadow-lg border-2 border-transparent hover:border-white/30 text-center`}>
+                             <button
+                               key={opt}
+                               onClick={() => { setFormData({...formData, who: opt}); setStep(2); }}
+                               className={`p-5 rounded-2xl ${ctaBtnBg} ${ctaBtnText} font-bold text-lg hover:scale-[1.02] transition-all shadow-lg border-2 border-transparent hover:border-white/30 text-center`}
+                             >
                                {opt}
                              </button>
                            ))}
                          </div>
+                         <button
+                           onClick={() => setStep(0)}
+                           className="mt-8 px-6 py-3 rounded-full border-2 border-white/30 text-white font-bold uppercase tracking-widest text-xs hover:bg-white/10 transition-all"
+                         >
+                           Prev
+                         </button>
                        </div>
                      )}
 
+                     {/* --- CTA Step 1.1: Other custom input step --- */}
+                     {isCTA && step === 11 && (
+                       <div className="w-full pt-8">
+                         <h3 className="text-xl md:text-2xl font-bold mb-8 text-white">Tell us more about your needs</h3>
+                         <textarea
+                           value={formData.otherText}
+                           onChange={e => setFormData({ ...formData, otherText: e.target.value })}
+                           placeholder="Type your needs or goals here..."
+                           className="w-full min-h-[120px] p-5 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-base text-white placeholder:text-white/40 font-bold mb-6"
+                         />
+                         <button
+                           onClick={() => { setFormData({ ...formData, who: 'Other' }); setStep(2); }}
+                           className={`px-8 py-4 rounded-full ${ctaBtnBg} ${ctaBtnText} font-black text-base md:text-lg hover:scale-105 transition-all shadow-xl mx-auto block uppercase tracking-widest`}
+                         >
+                           Continue
+                         </button>
+                       </div>
+                     )}
+
+                     {/* --- CTA Step 2: What would you like to focus on? --- */}
                      {isCTA && step === 2 && (
                        <div className="w-full pt-8">
                          <h3 className="text-xl md:text-2xl font-bold mb-8 text-white">What would you like to focus on?</h3>
                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg mx-auto">
-                           {focusOptions.map(opt => (
-                             <button key={opt} onClick={() => { setFormData({...formData, focus: opt}); setStep(3); }} className={`p-5 rounded-2xl ${ctaBtnBg} ${ctaBtnText} font-bold text-lg hover:scale-[1.02] transition-all shadow-lg border-2 border-transparent hover:border-white/30 text-center`}>
-                               {opt}
-                             </button>
+                           {focusOptions.concat("Other").map(opt => (
+                             opt === "Other" ? (
+                               <button
+                                 key={opt}
+                                 onClick={() => setStep(12)}
+                                 className={`p-5 rounded-2xl ${ctaBtnBg} ${ctaBtnText} font-bold text-lg hover:scale-[1.02] transition-all shadow-lg border-2 border-transparent hover:border-white/30 text-center`}
+                               >
+                                 {opt}
+                               </button>
+                             ) : (
+                               <button
+                                 key={opt}
+                                 onClick={() => { setFormData({...formData, focus: opt}); setStep(3); }}
+                                 className={`p-5 rounded-2xl ${ctaBtnBg} ${ctaBtnText} font-bold text-lg hover:scale-[1.02] transition-all shadow-lg border-2 border-transparent hover:border-white/30 text-center`}
+                               >
+                                 {opt}
+                               </button>
+                             )
                            ))}
+                         </div>
+                         <button
+                           onClick={() => setStep(1)}
+                           className="mt-8 px-6 py-3 rounded-full border-2 border-white/30 text-white font-bold uppercase tracking-widest text-xs hover:bg-white/10 transition-all"
+                         >
+                           Prev
+                         </button>
+                       </div>
+                     )}
+
+                     {/* --- CTA Step 2.1: Other custom focus input step --- */}
+                     {isCTA && step === 12 && (
+                       <div className="w-full pt-8">
+                         <h3 className="text-xl md:text-2xl font-bold mb-8 text-white">Tell us what you'd like to focus on</h3>
+                         <textarea
+                           value={formData.focus}
+                           onChange={e => setFormData({ ...formData, focus: e.target.value })}
+                           placeholder="Type your focus area or goal here..."
+                           className="w-full min-h-[100px] p-5 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-base text-white placeholder:text-white/40 font-bold mb-6"
+                         />
+                         <div className="flex gap-4 justify-center">
+                           <button
+                             onClick={() => setStep(2)}
+                             className="px-6 py-3 rounded-full border-2 border-white/30 text-white font-bold uppercase tracking-widest text-xs hover:bg-white/10 transition-all"
+                           >
+                             Prev
+                           </button>
+                           <button
+                             onClick={() => formData.focus.trim() ? setStep(3) : null}
+                             disabled={!formData.focus.trim()}
+                             className={`px-8 py-4 rounded-full ${ctaBtnBg} ${ctaBtnText} font-black text-base md:text-lg transition-all shadow-xl uppercase tracking-widest ${!formData.focus.trim() ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'}`}
+                           >
+                             Continue
+                           </button>
                          </div>
                        </div>
                      )}
@@ -553,11 +700,38 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                          <h3 className="text-xl md:text-2xl font-bold mb-6 text-center uppercase tracking-tighter text-white">Almost there...</h3>
                          <p className="text-base opacity-90 mb-8 text-center font-medium leading-relaxed text-white">We'll reach out to schedule your free 15-minute discovery call.</p>
                          <div className="space-y-3 text-left">
-                           <input value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} type="text" placeholder="Your Name" className="w-full p-5 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-base text-white placeholder:text-white/40 font-bold" />
-                           <input value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} type="email" placeholder="Your Email (ending in .com)" className="w-full p-5 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-base text-white placeholder:text-white/40 font-bold" />
-                           
+                           <input value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} type="text" placeholder="First Name" className="w-full p-5 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-base text-white placeholder:text-white/40 font-bold" />
+                           <div className="flex gap-2">
+                             <select
+                               value={formData.country}
+                               onChange={e => setFormData({ ...formData, country: e.target.value })}
+                               className="p-5 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-base text-white font-bold w-32"
+                             >
+                               <option value="+1">🇺🇸 +1</option>
+                               <option value="+44">🇬🇧 +44</option>
+                               <option value="+91">🇮🇳 +91</option>
+                               <option value="+61">🇦🇺 +61</option>
+                               <option value="+81">🇯🇵 +81</option>
+                               <option value="+49">🇩🇪 +49</option>
+                               <option value="+33">🇫🇷 +33</option>
+                               <option value="+971">🇦🇪 +971</option>
+                               <option value="+65">🇸🇬 +65</option>
+                               <option value="+86">🇨🇳 +86</option>
+                               <option value="+7">🇷🇺 +7</option>
+                               <option value="+34">🇪🇸 +34</option>
+                               <option value="+39">🇮🇹 +39</option>
+                               <option value="+55">🇧🇷 +55</option>
+                               <option value="+27">🇿🇦 +27</option>
+                               <option value="+82">🇰🇷 +82</option>
+                               <option value="+62">🇮🇩 +62</option>
+                               <option value="+234">🇳🇬 +234</option>
+                               <option value="+20">🇪🇬 +20</option>
+                               <option value="+880">🇧🇩 +880</option>
+                             </select>
+                             <input value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} type="tel" placeholder="Phone Number" className="flex-1 p-5 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-base text-white placeholder:text-white/40 font-bold" />
+                           </div>
+                           <input value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} type="email" placeholder="Your Email" className="w-full p-5 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-base text-white placeholder:text-white/40 font-bold" />
                            {error && <p className="text-red-400 text-sm font-bold text-center animate-pulse">{error}</p>}
-                           
                            <button onClick={handleConfirm} className={`w-full p-5 rounded-2xl ${ctaBtnBg} ${ctaBtnText} font-black text-lg hover:shadow-[0_0_60px_rgba(227,213,255,0.3)] transition-all shadow-xl uppercase tracking-widest`}>
                              Confirm My Request
                            </button>

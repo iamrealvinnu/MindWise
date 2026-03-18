@@ -112,21 +112,21 @@ export default function ApproachPage() {
           </div>
 
           {/* Tools Grid */}
-          <div className="glass-card p-12 md:p-20 bg-brand-primary text-white">
-            <h2 className="text-4xl md:text-5xl font-bold font-poppins mb-12 text-center">Our Sessions Combine</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div className="glass-card p-6 md:p-10 bg-brand-primary text-white flex flex-col items-center">
+            <h2 className="text-4xl md:text-5xl font-bold font-poppins mb-8 text-center">Our Sessions Combine</h2>
+            <div className="w-full flex flex-row flex-wrap md:flex-nowrap justify-center items-stretch gap-6 md:gap-8 lg:gap-10">
               {[
                 { title: "Workshops", icon: Users2, text: "Interactive sessions" },
                 { title: "Guided Activities", icon: Activity, text: "Hands-on experience" },
                 { title: "Reflective Exercises", icon: BookOpen, text: "Deepening awareness" },
                 { title: "Practical Tools", icon: Wrench, text: "Everyday application" }
               ].map((tool, i) => (
-                <div key={i} className="text-center">
-                  <div className="w-20 h-20 bg-white/10 rounded-3xl flex items-center justify-center mx-auto mb-6">
-                    <tool.icon className="w-10 h-10" />
+                <div key={i} className="flex flex-col items-center text-center bg-white/90 text-brand-primary rounded-2xl shadow-lg p-6 min-w-[160px] max-w-[200px] flex-1">
+                  <div className="w-14 h-14 bg-brand-primary/10 rounded-xl flex items-center justify-center mb-4">
+                    <tool.icon className="w-8 h-8" />
                   </div>
-                  <h4 className="text-2xl font-bold mb-2">{tool.title}</h4>
-                  <p className="text-white/70">{tool.text}</p>
+                  <h4 className="text-lg md:text-xl font-bold mb-1">{tool.title}</h4>
+                  <p className="text-brand-primary/70 text-sm md:text-base">{tool.text}</p>
                 </div>
               ))}
             </div>
