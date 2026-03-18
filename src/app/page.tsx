@@ -39,7 +39,7 @@ const quadrants = [
     hex: "#E3D5FF",
     icon: ShieldCheck,
     content: "Our programs focus on real-world application, empowering participants with strategies they can immediately implement in both their professional and personal lives.",
-    action: "Our Methods",
+    action: "Our Approach",
     methods: [
       "Interactive workshops",
       "Guided activities",
@@ -532,31 +532,19 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                      {/* APPROACH DEEP DIVE */}
                      {data.id === 'approach' && (
                        <div className="space-y-6">
-                         <h3 className="text-xl font-bold mb-4 opacity-90">A Typical 60-Minute Session</h3>
-                         <div className="space-y-3">
-                           <div className="flex gap-5 items-start p-5 rounded-2xl bg-black/5 border border-current/10 hover:bg-black/10 transition-colors">
-                              <div className="p-2.5 rounded-full bg-current/10 shrink-0"><Heart className="w-5 h-5 opacity-80" /></div>
-                              <div>
-                                 <h4 className="text-lg font-bold mb-0.5">1. Grounding <span className="opacity-50 text-xs font-normal ml-2">(10 mins)</span></h4>
-                                 <p className="text-sm opacity-80 leading-relaxed">Centering exercises to bring focus to the present moment and leave the day's noise behind.</p>
-                              </div>
+                         <h3 className="text-xl font-bold mb-4 opacity-90 text-black">What We Do</h3>
+                         <div className="space-y-6 text-left text-black px-6 py-8 md:px-12 md:py-10">
+                           <p className="text-base md:text-lg font-medium mb-4 text-black">We curate scientifically designed events and structured activities that help individuals:</p>
+                           <div className="flex flex-wrap gap-4 mt-2">
+                             <span className="px-6 py-3 rounded-full bg-black/20 text-black font-semibold text-sm md:text-base shadow-sm">Manage thoughts with clarity and focus</span>
+                             <span className="px-6 py-3 rounded-full bg-black/20 text-black font-semibold text-sm md:text-base shadow-sm">Regulate emotions effectively</span>
+                             <span className="px-6 py-3 rounded-full bg-black/20 text-black font-semibold text-sm md:text-base shadow-sm">Build healthy behavioral patterns</span>
+                             <span className="px-6 py-3 rounded-full bg-black/20 text-black font-semibold text-sm md:text-base shadow-sm">Improve resilience under stress</span>
+                             <span className="px-6 py-3 rounded-full bg-black/20 text-black font-semibold text-sm md:text-base shadow-sm">Strengthen confidence and self-awareness</span>
                            </div>
-                           <div className="flex gap-5 items-start p-5 rounded-2xl bg-black/5 border border-current/10 hover:bg-black/10 transition-colors">
-                              <div className="p-2.5 rounded-full bg-current/10 shrink-0"><Compass className="w-5 h-5 opacity-80" /></div>
-                              <div>
-                                 <h4 className="text-lg font-bold mb-0.5">2. Discovery <span className="opacity-50 text-xs font-normal ml-2">(30 mins)</span></h4>
-                                 <p className="text-sm opacity-80 leading-relaxed">Interactive workshops, safe role-playing, and cognitive framing to build real skills.</p>
-                              </div>
-                           </div>
-                           <div className="flex gap-5 items-start p-5 rounded-2xl bg-black/5 border border-current/10 hover:bg-black/10 transition-colors">
-                              <div className="p-2.5 rounded-full bg-current/10 shrink-0"><ShieldCheck className="w-5 h-5 opacity-80" /></div>
-                              <div>
-                                 <h4 className="text-lg font-bold mb-0.5">3. Integration <span className="opacity-50 text-xs font-normal ml-2">(20 mins)</span></h4>
-                                 <p className="text-sm opacity-80 leading-relaxed">Actionable takeaways and structured journaling to apply today's growth to tomorrow's life.</p>
-                              </div>
-                           </div>
+                           <p className="mt-8 text-base md:text-lg font-semibold text-black">All our programs are carefully designed and led by certified psychologists, ensuring that every session is evidence-based, practical, and impactful.</p>
                          </div>
-                         <button onClick={() => setStep(0)} className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity pt-2">
+                         <button onClick={() => setStep(0)} className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity pt-2 text-black">
                            <ArrowLeft className="w-3 h-3" /> Go Back
                          </button>
                        </div>
