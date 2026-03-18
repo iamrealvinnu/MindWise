@@ -73,9 +73,9 @@ const quadrants = [
     hex: "#2D3748",
     icon: Activity,
     content: [
-      "Join us in building a culture where fitness for your mind is prioritized, practiced, and celebrated.",
-      "Because a healthy mind creates a powerful life.",
-      "Developed by psychologists based on research."
+        "Join us in building a culture where fitness for your mind is prioritized, practiced, and celebrated.",
+        "Because a healthy mind creates a powerful life.",
+        "Developed by psychologists based on research."
     ],
     action: "Start Your Journey"
   },
@@ -489,14 +489,7 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                        </>
                      )}
 
-                     {isCTA && (
-                       <div className="flex flex-col items-center gap-6 mb-16">
-                          <div className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/10 border border-white/20 shadow-lg text-white">
-                            <BookOpen className="w-4 h-4" />
-                            <span className="text-xs font-bold uppercase tracking-widest text-white">Scientifically Developed</span>
-                          </div>
-                       </div>
-                     )}
+
 
                      <button 
                        onClick={handleActionClick}
