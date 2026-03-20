@@ -532,21 +532,21 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                      {/* APPROACH DEEP DIVE */}
                      {data.id === 'approach' && (
                        <div className="space-y-6">
-                         <h3 className="text-xl font-bold mb-4 opacity-90 text-black">What We Do</h3>
                          <div className="space-y-6 text-left text-black px-6 py-8 md:px-12 md:py-10">
-                           <p className="text-base md:text-lg font-medium mb-4 text-black">We curate scientifically designed events and structured activities that help individuals:</p>
-                           <ul className="list-disc list-inside space-y-3 mt-4 text-base md:text-lg font-medium text-black">
+                           <h3 className="text-xl md:text-2xl font-bold opacity-90 text-black">What We Do</h3>
+                           <p className="text-base md:text-lg font-medium text-black">We curate scientifically designed events and structured activities that help individuals:</p>
+                           <ul className="list-disc pl-6 space-y-3 text-base md:text-lg font-medium text-black">
                              <li>Manage thoughts with clarity and focus</li>
                              <li>Regulate emotions effectively</li>
                              <li>Build healthy behavioral patterns</li>
                              <li>Improve resilience under stress</li>
                              <li>Strengthen confidence and self-awareness</li>
                            </ul>
-                           <p className="mt-8 text-base md:text-lg font-semibold text-black">All our programs are carefully designed and led by certified psychologists, ensuring that every session is evidence-based, practical, and impactful.</p>
+                           <p className="mt-4 text-base md:text-lg font-semibold text-black leading-relaxed">All our programs are carefully designed and led by certified psychologists, ensuring that every session is evidence-based, practical, and impactful.</p>
+                           <button onClick={() => setStep(0)} className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity pt-6 text-black">
+                             <ArrowLeft className="w-3 h-3" /> Go Back
+                           </button>
                          </div>
-                         <button onClick={() => setStep(0)} className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity pt-2 text-black">
-                           <ArrowLeft className="w-3 h-3" /> Go Back
-                         </button>
                        </div>
                      )}
 
