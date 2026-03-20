@@ -535,7 +535,7 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                          <h3 className="text-xl font-bold mb-4 opacity-90 text-black">What We Do</h3>
                          <div className="space-y-6 text-left text-black px-6 py-8 md:px-12 md:py-10">
                            <p className="text-base md:text-lg font-medium mb-4 text-black">We curate scientifically designed events and structured activities that help individuals:</p>
-                           <ul className="list-disc pl-5 space-y-3 mt-4 text-base md:text-lg font-medium text-black">
+                           <ul className="list-disc list-inside space-y-3 mt-4 text-base md:text-lg font-medium text-black">
                              <li>Manage thoughts with clarity and focus</li>
                              <li>Regulate emotions effectively</li>
                              <li>Build healthy behavioral patterns</li>
