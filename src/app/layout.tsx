@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 
@@ -18,6 +18,13 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Mindwise | A New Era of Fitness for your Mind",
   description: "Scientifically designed events and structured activities to help you develop a resilient, balanced, and high-performing mind. Led by certified psychologists.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
