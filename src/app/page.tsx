@@ -55,7 +55,7 @@ const quadrants = [
     textColor: "text-white",
     hex: "#6A4C93",
     icon: Sparkles,
-    content: "We understand that fitness for the mind evolve across life stages. We offer tailored programs carefully designed and led by certified psychologists.",
+    content: "We understand that fitness for the mind evolves across life stages. We offer programs carefully designed and led by certified psychologists.",
     action: "Begin Your Path",
     programList: [
       { title: "Children", icon: Smile, desc: "Building emotional intelligence, focus, confidence, and healthy habits early in life." },
