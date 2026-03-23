@@ -6,7 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   Brain, Sparkles, Activity, ShieldCheck, X, ArrowRight,
   Shield, Heart, TrendingUp, Zap, CheckCircle2, Award,
-  Smile, Star, Compass, Briefcase, User, Users, Home, BookOpen, Clock, ArrowLeft
+  Smile, Star, Compass, Briefcase, User, Users, Home, BookOpen, Clock, ArrowLeft,
+  Mail, MapPin
 } from "lucide-react";
 
 // Types
@@ -77,7 +78,9 @@ const quadrants = [
         "Because a healthy mind creates a powerful life.",
         "Developed by psychologists based on research."
     ],
-    action: "Start Your Journey"
+    action: "Start Your Journey",
+    email: "support@mindwise.com",
+    address: "WeWork Princeville, Off Intermediate Ring Road, Embassy Golf Links Business Park, Domlur, Bengaluru, Karnataka-560071"
   },
 ];
 
@@ -350,7 +353,7 @@ function ActiveView({ data, onClose, onNavigate }: any) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.com$/;
     const phoneRegex = /^\d{7,15}$/;
     if (!formData.name.trim()) {
-      setError("Please provide your first name.");
+      setError("Please provide your name.");
       return;
     }
     if (!formData.phone.trim() || !phoneRegex.test(formData.phone.trim())) {
@@ -498,6 +501,36 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                        {data.action} 
                        <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                      </button>
+
+                     {isCTA && (
+                       <div className="mt-16 pt-8 border-t border-white/10 w-full text-left">
+                         <h4 className="text-sm font-bold uppercase tracking-[0.3em] opacity-50 mb-6 text-white">Contact Us</h4>
+                         <div className="space-y-6">
+                           <div className="flex items-start gap-4 group">
+                             <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-white/10 transition-colors">
+                               <Mail className="w-5 h-5 text-brand-accent" />
+                             </div>
+                             <div>
+                               <p className="text-[10px] font-bold uppercase tracking-widest opacity-40 mb-1">Email Us</p>
+                               <a href={`mailto:${data.email}`} className="text-lg font-medium text-white hover:text-brand-accent transition-colors">
+                                 {data.email}
+                               </a>
+                             </div>
+                           </div>
+                           <div className="flex items-start gap-4 group">
+                             <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-white/10 transition-colors">
+                               <MapPin className="w-5 h-5 text-brand-accent" />
+                             </div>
+                             <div>
+                               <p className="text-[10px] font-bold uppercase tracking-widest opacity-40 mb-1">Our Location</p>
+                               <p className="text-base leading-relaxed opacity-80 max-w-sm text-white">
+                                 {data.address}
+                               </p>
+                             </div>
+                           </div>
+                         </div>
+                       </div>
+                     )}
                    </motion.div>
                  ) : (
                    // --- DEEP DIVE VIEWS ---
@@ -681,7 +714,7 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                          <h3 className="text-xl md:text-2xl font-bold mb-6 text-center uppercase tracking-tighter text-white">Almost there...</h3>
                          <p className="text-base opacity-90 mb-8 text-center font-medium leading-relaxed text-white">We'll reach out to schedule your free 15-minute discovery call.</p>
                          <div className="space-y-3 text-left">
-                           <input value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} type="text" placeholder="First Name" className="w-full p-5 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-base text-white placeholder:text-white/40 font-bold" />
+                           <input value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} type="text" placeholder="Name" className="w-full p-5 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-base text-white placeholder:text-white/40 font-bold" />
                            <div className="flex gap-2">
                              <select
                                value={formData.country}
