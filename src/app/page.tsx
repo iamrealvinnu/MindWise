@@ -79,7 +79,7 @@ const quadrants = [
         "Developed by psychologists based on research."
     ],
     action: "Start Your Journey",
-    email: "support@mindwise.com",
+    email: "support@mindwise.org",
     address: "WeWork Princeville, Off Intermediate Ring Road, Embassy Golf Links Business Park, Domlur, Bengaluru, Karnataka-560071"
   },
 ];
@@ -350,7 +350,7 @@ function ActiveView({ data, onClose, onNavigate }: any) {
   };
 
   const handleConfirm = () => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.com$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = /^\d{7,15}$/;
     if (!formData.name.trim()) {
       setError("Please provide your name.");
@@ -635,7 +635,7 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                              opt === "Other" ? (
                                <button
                                  key={opt}
-                                 onClick={() => setStep(12)}
+                                 onClick={() => { setFormData({...formData, focus: ""}); setStep(12); }}
                                  className={`p-5 rounded-2xl ${ctaBtnBg} ${ctaBtnText} font-bold text-lg hover:scale-[1.02] transition-all shadow-lg border-2 border-transparent hover:border-white/30 text-center`}
                                >
                                  {opt}
@@ -687,16 +687,13 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                            className="w-full min-h-[100px] p-5 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-base text-white placeholder:text-white/40 font-bold mb-6"
                          />
                          <div className="flex flex-col gap-6 items-center">
-                           {formData.focus.trim() && (
-                             <motion.button
-                               initial={{ opacity: 0, scale: 0.9 }}
-                               animate={{ opacity: 1, scale: 1 }}
-                               onClick={() => setStep(4)}
-                               className={`px-10 py-6 rounded-full ${ctaBtnBg} ${ctaBtnText} font-black text-lg md:text-xl hover:scale-105 transition-all shadow-2xl uppercase tracking-widest`}
-                             >
-                               Let's map your journey
-                             </motion.button>
-                           )}
+                           <button
+                             disabled={!formData.focus.trim()}
+                             onClick={() => setStep(4)}
+                             className={`px-10 py-6 rounded-full ${ctaBtnBg} ${ctaBtnText} font-black text-lg md:text-xl transition-all shadow-2xl uppercase tracking-widest ${!formData.focus.trim() ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'}`}
+                           >
+                             Let's map your journey
+                           </button>
                            <button
                              onClick={() => setStep(2)}
                              className="px-6 py-3 rounded-full border-2 border-white/30 text-white font-bold uppercase tracking-widest text-xs hover:bg-white/10 transition-all"
