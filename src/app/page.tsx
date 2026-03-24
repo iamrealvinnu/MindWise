@@ -643,14 +643,30 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                              ) : (
                                <button
                                  key={opt}
-                                 onClick={() => { setFormData({...formData, focus: opt}); setStep(3); }}
-                                 className={`p-5 rounded-2xl ${ctaBtnBg} ${ctaBtnText} font-bold text-lg hover:scale-[1.02] transition-all shadow-lg border-2 border-transparent hover:border-white/30 text-center`}
+                                 onClick={() => setFormData({...formData, focus: opt})}
+                                 className={`p-5 rounded-2xl ${formData.focus === opt ? 'bg-white text-brand-primary border-white' : `${ctaBtnBg} ${ctaBtnText} border-transparent`} font-bold text-lg hover:scale-[1.02] transition-all shadow-lg border-2 hover:border-white/30 text-center`}
                                >
                                  {opt}
                                </button>
                              )
                            ))}
                          </div>
+                         
+                         {formData.focus && (
+                           <motion.div 
+                             initial={{ opacity: 0, scale: 0.9 }}
+                             animate={{ opacity: 1, scale: 1 }}
+                             className="mt-12 text-center"
+                           >
+                             <button 
+                               onClick={() => setStep(4)} 
+                               className={`px-10 py-6 rounded-full ${ctaBtnBg} ${ctaBtnText} font-black text-lg md:text-xl hover:scale-105 transition-all shadow-2xl uppercase tracking-widest`}
+                             >
+                               Let's map your journey
+                             </button>
+                           </motion.div>
+                         )}
+
                          <button
                            onClick={() => setStep(1)}
                            className="mt-8 px-6 py-3 rounded-full border-2 border-white/30 text-white font-bold uppercase tracking-widest text-xs hover:bg-white/10 transition-all"
@@ -670,30 +686,24 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                            placeholder="Type your focus area or goal here..."
                            className="w-full min-h-[100px] p-5 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-base text-white placeholder:text-white/40 font-bold mb-6"
                          />
-                         <div className="flex gap-4 justify-center">
+                         <div className="flex flex-col gap-6 items-center">
+                           {formData.focus.trim() && (
+                             <motion.button
+                               initial={{ opacity: 0, scale: 0.9 }}
+                               animate={{ opacity: 1, scale: 1 }}
+                               onClick={() => setStep(4)}
+                               className={`px-10 py-6 rounded-full ${ctaBtnBg} ${ctaBtnText} font-black text-lg md:text-xl hover:scale-105 transition-all shadow-2xl uppercase tracking-widest`}
+                             >
+                               Let's map your journey
+                             </motion.button>
+                           )}
                            <button
                              onClick={() => setStep(2)}
                              className="px-6 py-3 rounded-full border-2 border-white/30 text-white font-bold uppercase tracking-widest text-xs hover:bg-white/10 transition-all"
                            >
                              Prev
                            </button>
-                           <button
-                             onClick={() => formData.focus.trim() ? setStep(3) : null}
-                             disabled={!formData.focus.trim()}
-                             className={`px-8 py-4 rounded-full ${ctaBtnBg} ${ctaBtnText} font-black text-base md:text-lg transition-all shadow-xl uppercase tracking-widest ${!formData.focus.trim() ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'}`}
-                           >
-                             Continue
-                           </button>
                          </div>
-                       </div>
-                     )}
-
-                     {isCTA && step === 3 && (
-                       <div className="w-full pt-12 text-center">
-                         <h3 className="text-4xl md:text-7xl font-black mb-8 text-white uppercase tracking-tighter"></h3>
-                         <button onClick={nextStep} className={`px-10 py-6 rounded-full ${ctaBtnBg} ${ctaBtnText} font-black text-lg md:text-xl hover:scale-105 transition-all shadow-2xl uppercase tracking-widest`}>
-                           Let's map your journey
-                         </button>
                        </div>
                      )}
 
