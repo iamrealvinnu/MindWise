@@ -690,7 +690,7 @@ function ActiveView({ data, onClose, onNavigate }: any) {
 
                      {isCTA && step === 3 && (
                        <div className="w-full pt-12 text-center">
-                         <h3 className="text-4xl md:text-7xl font-black mb-8 text-white uppercase tracking-tighter">Join Us</h3>
+                         <h3 className="text-4xl md:text-7xl font-black mb-8 text-white uppercase tracking-tighter"></h3>
                          <button onClick={nextStep} className={`px-10 py-6 rounded-full ${ctaBtnBg} ${ctaBtnText} font-black text-lg md:text-xl hover:scale-105 transition-all shadow-2xl uppercase tracking-widest`}>
                            Let's map your journey
                          </button>
