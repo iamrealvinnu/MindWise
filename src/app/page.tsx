@@ -689,22 +689,10 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                      )}
 
                      {isCTA && step === 3 && (
-                       <div className="w-full pt-8">
-                         <h3 className="text-xl md:text-2xl font-bold mb-6 text-center uppercase tracking-tighter text-white">You're in the right place.</h3>
-                         <div className="max-w-xl mx-auto p-6 rounded-[2rem] bg-white/10 backdrop-blur-xl border border-white/20 flex flex-col md:flex-row items-center gap-6 text-left mb-8 shadow-2xl">
-                            <div className="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center shrink-0 border-2 border-white/30">
-                              <User className="w-10 h-10 text-white" />
-                            </div>
-                            <div className="text-white">
-                              <h4 className="text-xl font-bold mb-1">Our Certified Experts</h4>
-                              <p className="text-base opacity-90 italic mb-3 font-medium leading-relaxed">"Our team of psychologists specializes in {formData.focus.toLowerCase()} for {formData.who.toLowerCase()}."</p>
-                              <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-70">
-                                <ShieldCheck className="w-3.5 h-3.5 text-brand-accent" /> PhD & Clinical Credentials
-                              </div>
-                            </div>
-                         </div>
-                         <button onClick={nextStep} className={`px-8 py-5 rounded-full ${ctaBtnBg} ${ctaBtnText} font-black text-base md:text-lg hover:scale-105 transition-all shadow-xl mx-auto block uppercase tracking-widest`}>
-                           Let's Map Your Path
+                       <div className="w-full pt-12 text-center">
+                         <h3 className="text-4xl md:text-7xl font-black mb-8 text-white uppercase tracking-tighter">Join Us</h3>
+                         <button onClick={nextStep} className={`px-10 py-6 rounded-full ${ctaBtnBg} ${ctaBtnText} font-black text-lg md:text-xl hover:scale-105 transition-all shadow-2xl uppercase tracking-widest`}>
+                           Let's map your journey
                          </button>
                        </div>
                      )}
