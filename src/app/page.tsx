@@ -1,3 +1,14 @@
+/**
+ * @file UniqueLanding.tsx
+ * @description MindWise Interactive Landing Experience
+ * @architecture Next.js (App Router compatible), Framer Motion for orchestration, TailwindCSS for utility styling.
+ * * Features:
+ * - 4-Quadrant fluid navigation system.
+ * - Background no-CORS Google Form submission (bypassing traditional backend).
+ * - Multi-step interactive discovery flow for lead generation.
+ * - Dynamic, region-specific phone number validation and formatting.
+ */
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -7,16 +18,21 @@ import {
   Brain, Sparkles, Activity, ShieldCheck, X, ArrowRight,
   Shield, Heart, TrendingUp, Zap, CheckCircle2, Award,
   Smile, Star, Compass, Briefcase, User, Users, Home, BookOpen, Clock, ArrowLeft,
-  Mail, MapPin
+  Mail, MapPin, Instagram, Youtube, Linkedin
 } from "lucide-react";
 
-// Types
+// --- Type Definitions ---
 type SectionId = "philosophy" | "approach" | "programs" | "cta" | null;
 
+// --- Application Configuration ---
+/**
+ * Core Data Model mapping the 4 primary business pillars.
+ * Contains copy, iconography, and Google Form mappings.
+ */
 const quadrants = [
   {
     id: "philosophy",
-  title: "Why MindWise",
+    title: "Why MindWise",
     subtitle: "The Foundation",
     color: "bg-[#F4EEFF]",
     textColor: "text-[#6A4C93]",
@@ -80,13 +96,48 @@ const quadrants = [
     ],
     action: "Start Your Journey",
     email: "support@mindwise.org",
-    address: "WeWork Princeville, Off Intermediate Ring Road, Embassy Golf Links Business Park, Domlur, Bengaluru, Karnataka-560071"
+    address: "WeWork Princeville, Off Intermediate Ring Road, Embassy Golf Links Business Park, Domlur, Bengaluru, Karnataka-560071",
+    // ⚠️ CRITICAL: Production Google Form endpoint. Ensure endpoint ends in /formResponse
+    formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfurSxJgunWvZ7YwGSOp1K8llt4QhGbVU0GBsiCxR3-vd2ozQ/formResponse",
+    entryIds: {
+      name: "entry.929867643", 
+      email: "entry.2085119739",
+      phone: "entry.406148736",
+      who: "entry.1708437523",
+      focus: "entry.344005860"
+    }
   },
 ];
 
-// --- Custom Components ---
+/**
+ * Country-specific phone number length validation rules.
+ * Defines strict min/max constraints to dynamically format the form.
+ */
+const phoneValidationRules: Record<string, { min: number, max: number }> = {
+  "+1": { min: 10, max: 10 },   // US/Canada
+  "+44": { min: 10, max: 11 },  // UK
+  "+91": { min: 10, max: 10 },  // India
+  "+61": { min: 9, max: 9 },    // Australia
+  "+81": { min: 10, max: 11 },  // Japan
+  "+49": { min: 10, max: 11 },  // Germany
+  "+33": { min: 9, max: 9 },    // France
+  "+971": { min: 9, max: 9 },   // UAE
+  "+65": { min: 8, max: 8 },    // Singapore
+  "+86": { min: 11, max: 11 },  // China
+  "+7": { min: 10, max: 10 },   // Russia
+  "+34": { min: 9, max: 9 },    // Spain
+  "+39": { min: 10, max: 10 },  // Italy
+  "+55": { min: 10, max: 11 },  // Brazil
+  "+27": { min: 9, max: 9 },    // South Africa
+  "+82": { min: 9, max: 11 },   // South Korea
+  "+62": { min: 9, max: 12 },   // Indonesia
+  "+234": { min: 10, max: 11 }, // Nigeria
+  "+20": { min: 10, max: 10 },  // Egypt
+  "+880": { min: 10, max: 10 }, // Bangladesh
+};
 
-const LogoOnly = ({ className = "" }) => (
+// --- Sub-Components ---
+const LogoOnly = ({ className = "" }: { className?: string }) => (
   <div className={`relative ${className}`}>
     <Image 
       src="/assets/mindwise_logo.png"
@@ -98,24 +149,29 @@ const LogoOnly = ({ className = "" }) => (
   </div>
 );
 
+// --- Main Layout Component ---
 export default function UniqueLanding() {
+  // UI State Management
   const [hovered, setHovered] = useState<SectionId>(null);
   const [active, setActive] = useState<SectionId>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [showQuadrants, setShowQuadrants] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Initialization & Event Listeners
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
+    checkMobile(); // Initial check
+    
     window.addEventListener("resize", checkMobile);
     
-    // Intro sequence: 4.5 seconds of high-priority loading
+    // Orchestrate intro animation sequence
     const timer = setTimeout(() => {
       setIsLoading(false);
       setShowQuadrants(true);
     }, 4500);
     
+    // Cleanup listeners on unmount
     return () => {
       window.removeEventListener("resize", checkMobile);
       clearTimeout(timer);
@@ -125,14 +181,14 @@ export default function UniqueLanding() {
   return (
     <div className="h-[100dvh] w-screen overflow-hidden bg-[#E2DBF0] relative font-inter text-foreground select-none">
       
-      {/* Fluid Brand Mesh Background */}
+      {/* Background Mesh Gradients */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute -top-[20%] -left-[10%] w-[70%] h-[70%] bg-white/30 blur-[120px] rounded-full animate-pulse" />
         <div className="absolute top-[40%] -right-[10%] w-[60%] h-[60%] bg-[#B39DDB]/30 blur-[100px] rounded-full" />
         <div className="absolute -bottom-[10%] left-[20%] w-[50%] h-[50%] bg-brand-primary/10 blur-[120px] rounded-full animate-pulse" />
       </div>
 
-      {/* High-Priority Loading Intro */}
+      {/* Intro Loading Sequence */}
       <AnimatePresence>
         {isLoading && (
           <motion.div
@@ -146,7 +202,6 @@ export default function UniqueLanding() {
             }}
             className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#E2DBF0]"
           >
-            {/* Logo breathing and floating */}
             <motion.div
               initial={{ scale: 0.8, opacity: 0, rotate: -45 }}
               animate={{ 
@@ -169,7 +224,6 @@ export default function UniqueLanding() {
               </div>
             </motion.div>
 
-            {/* Requested Brand Line */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -190,9 +244,10 @@ export default function UniqueLanding() {
         )}
       </AnimatePresence>
 
-      {/* Grid Canvas - FORCED 2x2 ON ALL SCREENS */}
+      {/* Main UI: 2x2 Interactive Grid */}
       <div className="w-full h-full flex flex-col relative z-10">
-        {/* Central Logo Overlay */}
+        
+        {/* Central Logo Overlay (Visible only when no quadrant is active) */}
         {showQuadrants && !active && (
           <motion.div
             initial={{ scale: 0.8, opacity: 0, y: 0 }}
@@ -213,22 +268,25 @@ export default function UniqueLanding() {
             </div>
           </motion.div>
         )}
-        {/* Top Half */}
+
+        {/* Top Quadrants */}
         <div className="flex-1 flex flex-row">
           <Quadrant data={quadrants[0]} hovered={hovered} setHovered={setHovered} setActive={setActive} isMobile={isMobile} isVisible={showQuadrants} index={0} />
           <Quadrant data={quadrants[1]} hovered={hovered} setHovered={setHovered} setActive={setActive} isMobile={isMobile} isVisible={showQuadrants} index={1} />
         </div>
-        {/* Bottom Half */}
+        
+        {/* Bottom Quadrants */}
         <div className="flex-1 flex flex-row">
           <Quadrant data={quadrants[2]} hovered={hovered} setHovered={setHovered} setActive={setActive} isMobile={isMobile} isVisible={showQuadrants} index={2} />
           <Quadrant data={quadrants[3]} hovered={hovered} setHovered={setHovered} setActive={setActive} isMobile={isMobile} isVisible={showQuadrants} index={3} />
         </div>
       </div>
 
-      {/* Expanded Active View Overlay */}
-      <AnimatePresence>
+      {/* Expanded Active View Router */}
+      <AnimatePresence mode="wait">
         {active && (
           <ActiveView 
+            key={active}
             data={quadrants.find(q => q.id === active)!} 
             onClose={() => setActive(null)} 
             onNavigate={(id: SectionId) => setActive(id)}
@@ -239,10 +297,11 @@ export default function UniqueLanding() {
   );
 }
 
+// --- Quadrant Card Component ---
 function Quadrant({ data, hovered, setHovered, setActive, isMobile, isVisible, index }: any) {
+  // Logic to handle flex-grow animations based on hover state
   const isHovered = hovered === data.id;
   const isOtherHovered = hovered !== null && hovered !== data.id;
-
   const flexGrow = isMobile ? 1 : (isHovered ? 2.5 : (isOtherHovered ? 0.6 : 1));
 
   return (
@@ -268,6 +327,7 @@ function Quadrant({ data, hovered, setHovered, setActive, isMobile, isVisible, i
          layoutId={`background-${data.id}`}
          className={`absolute inset-0 ${data.color} ${data.textColor}`}
       >
+         {/* Noise overlay for texture */}
          <div className="absolute inset-0 opacity-[0.03] mix-blend-multiply pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.2)_0%,transparent_60%)]" />
       </motion.div>
@@ -281,6 +341,7 @@ function Quadrant({ data, hovered, setHovered, setActive, isMobile, isVisible, i
            {data.title}
          </motion.h2>
 
+         {/* Conditional rendering for desktop subtitle/action animations */}
          {!isMobile && (isVisible) && (
           <div className="mt-4 w-full flex justify-center min-h-[5rem]">
             <AnimatePresence mode="wait">
@@ -317,6 +378,7 @@ function Quadrant({ data, hovered, setHovered, setActive, isMobile, isVisible, i
           </div>
         )}
         
+        {/* Simplified mobile view */}
         {isMobile && (
           <p className="mt-1 text-xs sm:text-sm opacity-70 font-medium px-2 text-center line-clamp-1">
             {data.subtitle}
@@ -327,20 +389,62 @@ function Quadrant({ data, hovered, setHovered, setActive, isMobile, isVisible, i
   );
 }
 
+// Directional variants mapping for the slide-in ActiveView animations
+const viewVariants = {
+  philosophy: { initial: { x: "-100%", y: "-100%" }, animate: { x: 0, y: 0 }, exit: { x: "-100%", y: "-100%" } },
+  approach: { initial: { x: "100%", y: "-100%" }, animate: { x: 0, y: 0 }, exit: { x: "100%", y: "-100%" } },
+  programs: { initial: { x: "-100%", y: "100%" }, animate: { x: 0, y: 0 }, exit: { x: "-100%", y: "100%" } },
+  cta: { initial: { x: "100%", y: "100%" }, animate: { x: 0, y: 0 }, exit: { x: "100%", y: "100%" } },
+};
+
+// --- Active View Controller (Deep Dive & Form Manager) ---
 function ActiveView({ data, onClose, onNavigate }: any) {
+  // Local state for multi-step modal routing
   const [step, setStep] = useState(0); 
   
-  const [formData, setFormData] = useState({ who: "", focus: "", name: "", email: "", phone: "", country: "+1", otherText: "" });
+  // Controlled form payload
+  const [formData, setFormData] = useState({ 
+    who: "", 
+    focus: "", 
+    name: "", 
+    email: "", 
+    phone: "", 
+    country: "+91" // Defaulted to India as requested 
+  });
+  
   const [error, setError] = useState("");
 
-  const nextStep = () => setStep(s => s + 1);
+  // Determine current active phone rules
+  const currentPhoneRules = phoneValidationRules[formData.country] || { min: 7, max: 15 };
+
+  /**
+   * Resets the entire form flow state upon closing the modal
+   */
   const resetFlow = () => { 
     setStep(0); 
-    setFormData({ who: "", focus: "", name: "", email: "", phone: "", country: "+1", otherText: "" });
+    setFormData({ who: "", focus: "", name: "", email: "", phone: "", country: "+91" });
     setError("");
     onClose(); 
   };
 
+  /**
+   * Handles dynamic stripping of non-digits and restricts to max length
+   */
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Strip everything except numbers
+    const numericValue = e.target.value.replace(/\D/g, ''); 
+    
+    // Only update state if it falls within the country's max limit
+    if (numericValue.length <= currentPhoneRules.max) {
+      setFormData({ ...formData, phone: numericValue });
+      setError(""); // Clear error upon typing
+    }
+  };
+
+  /**
+   * Handles navigation based on current quadrant context.
+   * If in "Programs", cross-navigates cleanly to the "CTA" module.
+   */
   const handleActionClick = () => {
     if (data.id === 'programs') {
       onNavigate('cta');
@@ -349,41 +453,88 @@ function ActiveView({ data, onClose, onNavigate }: any) {
     }
   };
 
-  const handleConfirm = () => {
+  /**
+   * Validates form, manages no-cors submission to Google Scripts/Forms,
+   * and pushes UI to success state.
+   */
+  const handleConfirm = async () => {
+    // 1. Basic Frontend Validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^\d{7,15}$/;
+    
     if (!formData.name.trim()) {
       setError("Please provide your name.");
       return;
     }
-    if (!formData.phone.trim() || !phoneRegex.test(formData.phone.trim())) {
-      setError("Please provide a valid phone number (digits only, 7-15 numbers)");
+    
+    // Strict Dynamic Phone Validation based on selected Country Code
+    const cleanPhone = formData.phone.trim();
+    if (!cleanPhone || cleanPhone.length < currentPhoneRules.min || cleanPhone.length > currentPhoneRules.max) {
+      const lengthRequirement = currentPhoneRules.min === currentPhoneRules.max 
+        ? `${currentPhoneRules.min} digits` 
+        : `${currentPhoneRules.min} to ${currentPhoneRules.max} digits`;
+        
+      setError(`Please enter a valid phone number (${lengthRequirement} for ${formData.country}).`);
       return;
     }
+
     if (!emailRegex.test(formData.email)) {
-      setError("Please provide a valid email");
+      setError("Please provide a valid email.");
       return;
     }
-    setError("");
+    
+    setError(""); // Clear errors if valid
+
+    // 2. Network Transmission (Background Sync)
+    if (data.id === 'cta' && data.formUrl) {
+      
+      const googleFormData = new URLSearchParams();
+      
+      // Map React State -> Google Form exact entry fields
+      googleFormData.append(data.entryIds.name, formData.name);
+      googleFormData.append(data.entryIds.email, formData.email);
+      googleFormData.append(data.entryIds.phone, `${formData.country} ${formData.phone}`);
+      googleFormData.append(data.entryIds.who, formData.who); // Text mapped from button select
+      googleFormData.append(data.entryIds.focus, formData.focus); // Mapped from text area or button
+
+      try {
+        // We use mode: 'no-cors' to bypass browser CORS preflight blocks.
+        // Google Forms will consume the data, returning an opaque response.
+        await fetch(data.formUrl, {
+          method: 'POST',
+          mode: 'no-cors', 
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: googleFormData.toString()
+        });
+      } catch (err) {
+        console.error("Transmission error:", err);
+      }
+    }
+
+    // 3. Advance to Success Screen immediately (Optimistic UI update)
     setStep(5);
   };
 
-  // Discovery Flow Options
+  // Discovery Flow Dictionary Options
   const whoOptions = ["Myself", "My Child", "My Teen", "My Family"];
   const focusOptions = ["Managing Stress", "Emotional Growth", "Leadership", "Better Relationships"];
 
-  // Colors
   const isCTA = data.id === 'cta';
   const ctaBtnBg = "bg-[#E3D5FF]"; 
   const ctaBtnText = "text-[#2D3748]";
 
+  const currentVariant = viewVariants[data.id as keyof typeof viewVariants] || viewVariants.philosophy;
+
   return (
     <motion.div 
-      layoutId={`background-${data.id}`}
-      className={`fixed inset-0 z-[100] ${data.color} ${data.textColor} overflow-y-auto overflow-x-hidden scroll-smooth selection:bg-current selection:text-white`}
+      initial={currentVariant.initial}
+      animate={currentVariant.animate}
+      exit={currentVariant.exit}
+      transition={{ type: "spring", damping: 35, stiffness: 150, mass: 1 }}
+      className={`fixed inset-0 z-[100] ${data.textColor} overflow-y-auto overflow-x-hidden scroll-smooth selection:bg-current selection:text-white ${data.color}`}
     >
        <div className="fixed inset-0 opacity-[0.03] mix-blend-multiply pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
        
+       {/* Global Close Button */}
        <button 
          onClick={resetFlow}
          className="fixed top-6 right-6 md:top-12 md:right-12 z-[110] p-4 rounded-full bg-black/20 hover:bg-black/40 hover:scale-110 active:scale-95 backdrop-blur-xl transition-all border border-white/10 text-white"
@@ -392,18 +543,22 @@ function ActiveView({ data, onClose, onNavigate }: any) {
        </button>
 
        <div className="flex flex-col lg:flex-row min-h-screen w-full">
-         {/* Content Side */}
+         
+         {/* Left Side: Dynamic Content Pipeline */}
          <div className={`flex-1 flex flex-col justify-start pt-32 pb-24 px-8 md:px-16 lg:px-24 relative z-10 ${isCTA ? 'items-center text-center' : 'items-start text-left'}`}>
-           <motion.div layoutId={`content-${data.id}`} className="w-full max-w-4xl">
-               <motion.div layoutId={`icon-${data.id}`} className={`mb-8 md:mb-12 ${isCTA ? 'flex justify-center' : ''}`}>
-                 <data.icon className="w-12 h-12 md:w-20 md:h-20 opacity-80" />
-               </motion.div>
+           <motion.div className="w-full max-w-4xl">
                
-               <motion.h2 layoutId={`title-${data.id}`} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-poppins font-bold mb-6 md:mb-8 leading-[1.1] break-words uppercase tracking-tighter text-inherit">
+               {/* Section Icon & Header */}
+               <div className={`mb-8 md:mb-12 ${isCTA ? 'flex justify-center' : ''}`}>
+                 <data.icon className="w-12 h-12 md:w-20 md:h-20 opacity-80" />
+               </div>
+               
+               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-poppins font-bold mb-6 md:mb-8 leading-[1.1] break-words uppercase tracking-tighter text-inherit">
                  {data.title}
-               </motion.h2>
+               </h2>
                
                <AnimatePresence mode="wait">
+                 {/* STEP 0: Main Informational Overview */}
                  {step === 0 ? (
                    <motion.div 
                      key="step0"
@@ -415,6 +570,8 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                      <h3 className="text-lg md:text-2xl font-light opacity-80 mb-6 tracking-wide italic text-inherit">
                        {data.subtitle}
                      </h3>
+
+                     {/* Array Content parsing vs String Content */}
                      {Array.isArray(data.content) ? (
                        <>
                          <p className="text-base md:text-lg leading-relaxed opacity-90 max-w-2xl font-inter mb-6 text-inherit">
@@ -433,6 +590,7 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                        </p>
                      )}
 
+                     {/* Inject sub-components based on quadrant structure */}
                      {!isCTA && (
                        <>
                          {data.pillars && (
@@ -460,15 +618,6 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                                  </span>
                                ))}
                              </div>
-                             {Array.isArray(data.outcomes) && data.outcomes.length > 0 && (
-                               <div className="flex flex-wrap gap-2 mt-6">
-                                 {data.outcomes.map((outcome: string, i: number) => (
-                                   <span key={i} className="px-4 py-1.5 rounded-full border-2 border-current font-bold text-xs uppercase tracking-wider opacity-90">
-                                     {outcome}
-                                   </span>
-                                 ))}
-                               </div>
-                             )}
                            </div>
                          )}
                          {data.programList && (
@@ -476,6 +625,7 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                              {data.programList.map((prog: any, i: number) => (
                                <div 
                                  key={i} 
+                                 // Cross-Navigation routing handling
                                  onClick={() => onNavigate('cta')}
                                  className="p-6 rounded-[2rem] bg-white/5 border border-white/10 flex flex-col gap-3 hover:bg-white/10 hover:scale-[1.02] transition-all text-inherit cursor-pointer shadow-sm hover:shadow-xl"
                                >
@@ -492,8 +642,7 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                        </>
                      )}
 
-
-
+                     {/* Main Primary Action Button */}
                      <button 
                        onClick={handleActionClick}
                        className={`px-10 py-6 rounded-full font-black text-lg md:text-xl flex items-center gap-4 transition-all group ${isCTA ? `mx-auto animate-pulse ${ctaBtnBg} ${ctaBtnText} shadow-2xl` : 'border-2 border-current hover:bg-black/10'}`}
@@ -502,30 +651,56 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                        <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                      </button>
 
+                     {/* Footer Metadata rendered strictly on CTA */}
                      {isCTA && (
                        <div className="mt-16 pt-8 border-t border-white/10 w-full text-left">
-                         <h4 className="text-sm font-bold uppercase tracking-[0.3em] opacity-50 mb-6 text-white">Contact Us</h4>
-                         <div className="space-y-6">
-                           <div className="flex items-start gap-4 group">
-                             <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-white/10 transition-colors">
-                               <Mail className="w-5 h-5 text-brand-accent" />
-                             </div>
-                             <div>
-                               <p className="text-[10px] font-bold uppercase tracking-widest opacity-40 mb-1">Email Us</p>
-                               <a href={`mailto:${data.email}`} className="text-lg font-medium text-white hover:text-brand-accent transition-colors">
-                                 {data.email}
-                               </a>
+                         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                           <div className="space-y-8">
+                             <h4 className="text-sm font-bold uppercase tracking-[0.3em] opacity-50 text-white">Get in Touch</h4>
+                             <div className="space-y-6">
+                               <div className="flex items-start gap-4 group">
+                                 <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-white/10 transition-colors">
+                                   <Mail className="w-5 h-5 text-[#E3D5FF]" />
+                                 </div>
+                                 <div>
+                                   <p className="text-[10px] font-bold uppercase tracking-widest opacity-40 mb-1">Email Us</p>
+                                   <a href={`mailto:${data.email}`} className="text-lg font-medium text-white hover:text-brand-accent transition-colors">
+                                     {data.email}
+                                   </a>
+                                 </div>
+                               </div>
+                               <div className="flex items-start gap-4 group">
+                                 <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-white/10 transition-colors">
+                                   <MapPin className="w-5 h-5 text-[#E3D5FF]" />
+                                 </div>
+                                 <div>
+                                   <p className="text-[10px] font-bold uppercase tracking-widest opacity-40 mb-1">Our Location</p>
+                                   <a 
+                                     href="#" 
+                                     className="text-base leading-relaxed opacity-80 max-w-sm text-white hover:opacity-100 transition-opacity block"
+                                   >
+                                     {data.address}
+                                   </a>
+                                 </div>
+                               </div>
                              </div>
                            </div>
-                           <div className="flex items-start gap-4 group">
-                             <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-white/10 transition-colors">
-                               <MapPin className="w-5 h-5 text-brand-accent" />
-                             </div>
-                             <div>
-                               <p className="text-[10px] font-bold uppercase tracking-widest opacity-40 mb-1">Our Location</p>
-                               <p className="text-base leading-relaxed opacity-80 max-w-sm text-white">
-                                 {data.address}
-                               </p>
+
+                           <div className="space-y-8">
+                             <h4 className="text-sm font-bold uppercase tracking-[0.3em] opacity-50 text-white">Join the Community</h4>
+                             <div className="flex flex-wrap gap-4">
+                               <a href="#" className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:scale-105 transition-all group">
+                                 <Instagram className="w-5 h-5 text-[#E3D5FF] group-hover:scale-110 transition-transform" />
+                                 <span className="text-sm font-bold text-white">Instagram</span>
+                               </a>
+                               <a href="#" className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:scale-105 transition-all group">
+                                 <Youtube className="w-5 h-5 text-[#E3D5FF] group-hover:scale-110 transition-transform" />
+                                 <span className="text-sm font-bold text-white">YouTube</span>
+                               </a>
+                               <a href="#" className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:scale-105 transition-all group">
+                                 <Linkedin className="w-5 h-5 text-[#E3D5FF] group-hover:scale-110 transition-transform" />
+                                 <span className="text-sm font-bold text-white">LinkedIn</span>
+                               </a>
                              </div>
                            </div>
                          </div>
@@ -533,7 +708,7 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                      )}
                    </motion.div>
                  ) : (
-                   // --- DEEP DIVE VIEWS ---
+                   // --- STEPS 1-5: Interactive Form & Deep Dives ---
                    <motion.div 
                      key="step1-deepdive" 
                      initial={{ opacity: 0, x: 20 }} 
@@ -542,7 +717,7 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                      className="w-full pt-6"
                    >
                      
-                     {/* PHILOSOPHY DEEP DIVE */}
+                     {/* Dynamic Content Views for Non-CTA Quadrants */}
                      {data.id === 'philosophy' && (
                        <div className="space-y-6">
                          <div className="p-6 md:p-10 rounded-[2rem] bg-current/5 border border-current/10 text-center relative overflow-hidden">
@@ -562,7 +737,6 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                        </div>
                      )}
 
-                     {/* APPROACH DEEP DIVE */}
                      {data.id === 'approach' && (
                        <div className="space-y-6">
                          <div className="space-y-6 text-left text-black px-6 py-8 md:px-12 md:py-10">
@@ -575,7 +749,6 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                              <li>Improve resilience under stress</li>
                              <li>Strengthen confidence and self-awareness</li>
                            </ul>
-                           <p className="mt-4 text-base md:text-lg font-semibold text-black leading-relaxed">All our programs are carefully designed and led by certified psychologists, ensuring that every session is evidence-based, practical, and impactful.</p>
                            <button onClick={() => setStep(0)} className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity pt-6 text-black">
                              <ArrowLeft className="w-3 h-3" /> Go Back
                            </button>
@@ -583,7 +756,8 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                        </div>
                      )}
 
-                     {/* CTA STEPS (1-5) */}
+                     {/* --- CTA Form Logic --- */}
+                     {/* Step 1: Who is this for? (Cleaned up, no 'Other' button) */}
                      {isCTA && step === 1 && (
                        <div className="w-full pt-8">
                          <h3 className="text-xl md:text-2xl font-bold mb-8 text-white">Who is this journey for?</h3>
@@ -607,26 +781,7 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                        </div>
                      )}
 
-                     {/* --- CTA Step 1.1: Other custom input step --- */}
-                     {isCTA && step === 11 && (
-                       <div className="w-full pt-8">
-                         <h3 className="text-xl md:text-2xl font-bold mb-8 text-white">Tell us more about your needs</h3>
-                         <textarea
-                           value={formData.otherText}
-                           onChange={e => setFormData({ ...formData, otherText: e.target.value })}
-                           placeholder="Type your needs or goals here..."
-                           className="w-full min-h-[120px] p-5 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-base text-white placeholder:text-white/40 font-bold mb-6"
-                         />
-                         <button
-                           onClick={() => { setFormData({ ...formData, who: 'Other' }); setStep(2); }}
-                           className={`px-8 py-4 rounded-full ${ctaBtnBg} ${ctaBtnText} font-black text-base md:text-lg hover:scale-105 transition-all shadow-xl mx-auto block uppercase tracking-widest`}
-                         >
-                           Continue
-                         </button>
-                       </div>
-                     )}
-
-                     {/* --- CTA Step 2: What would you like to focus on? --- */}
+                     {/* Step 2: Focus Area Selection */}
                      {isCTA && step === 2 && (
                        <div className="w-full pt-8">
                          <h3 className="text-xl md:text-2xl font-bold mb-8 text-white">What would you like to focus on?</h3>
@@ -652,7 +807,8 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                            ))}
                          </div>
                          
-                         {formData.focus && (
+                         {/* Proceed button only appears after selection */}
+                         {formData.focus && formData.focus !== "" && step === 2 && (
                            <motion.div 
                              initial={{ opacity: 0, scale: 0.9 }}
                              animate={{ opacity: 1, scale: 1 }}
@@ -676,7 +832,7 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                        </div>
                      )}
 
-                     {/* --- CTA Step 2.1: Other custom focus input step --- */}
+                     {/* Step 12: Custom Input mapped to 'Focus' text state directly */}
                      {isCTA && step === 12 && (
                        <div className="w-full pt-8">
                          <h3 className="text-xl md:text-2xl font-bold mb-8 text-white">Tell us what you'd like to focus on</h3>
@@ -704,6 +860,7 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                        </div>
                      )}
 
+                     {/* Step 4: Primary PII Gathering & Submission Hook */}
                      {isCTA && step === 4 && (
                        <div className="w-full max-w-lg mx-auto pt-8">
                          <h3 className="text-xl md:text-2xl font-bold mb-6 text-center uppercase tracking-tighter text-white">Almost there...</h3>
@@ -711,10 +868,16 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                          <div className="space-y-3 text-left">
                            <input value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} type="text" placeholder="Name" className="w-full p-5 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-base text-white placeholder:text-white/40 font-bold" />
                            <div className="flex gap-2">
+                             
+                             {/* Region Selector */}
                              <select
                                value={formData.country}
-                               onChange={e => setFormData({ ...formData, country: e.target.value })}
-                               className="p-5 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-base text-white font-bold w-32"
+                               onChange={e => {
+                                 // Reset phone number when switching regions to prevent invalid states
+                                 setFormData({ ...formData, country: e.target.value, phone: "" });
+                                 setError("");
+                               }}
+                               className="p-5 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-base text-white font-bold w-32 cursor-pointer"
                              >
                                <option value="+1">🇺🇸 +1</option>
                                <option value="+44">🇬🇧 +44</option>
@@ -737,17 +900,31 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                                <option value="+20">🇪🇬 +20</option>
                                <option value="+880">🇧🇩 +880</option>
                              </select>
-                             <input value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} type="tel" placeholder="Phone Number" className="flex-1 p-5 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-base text-white placeholder:text-white/40 font-bold" />
+                             
+                             {/* Dynamic Input Handler */}
+                             <input 
+                               value={formData.phone} 
+                               onChange={handlePhoneChange} 
+                               type="tel" 
+                               maxLength={currentPhoneRules.max}
+                               placeholder={`Phone (${currentPhoneRules.min}${currentPhoneRules.min !== currentPhoneRules.max ? `-${currentPhoneRules.max}` : ''} digits)`} 
+                               className="flex-1 p-5 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-base text-white placeholder:text-white/40 font-bold" 
+                             />
                            </div>
                            <input value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} type="email" placeholder="Your Email" className="w-full p-5 rounded-2xl bg-white/10 border-2 border-white/20 focus:border-white outline-none text-base text-white placeholder:text-white/40 font-bold" />
+                           
+                           {/* Error Messaging Pipeline */}
                            {error && <p className="text-red-400 text-sm font-bold text-center animate-pulse">{error}</p>}
-                           <button onClick={handleConfirm} className={`w-full p-5 rounded-2xl ${ctaBtnBg} ${ctaBtnText} font-black text-lg hover:shadow-[0_0_60px_rgba(227,213,255,0.3)] transition-all shadow-xl uppercase tracking-widest`}>
+                           
+                           {/* Final Commit Button */}
+                           <button onClick={handleConfirm} className={`w-full p-5 rounded-2xl ${ctaBtnBg} ${ctaBtnText} font-black text-lg hover:shadow-[0_0_60px_rgba(227,213,255,0.3)] transition-all shadow-xl uppercase tracking-widest mt-2`}>
                              Confirm My Request
                            </button>
                          </div>
                        </div>
                      )}
 
+                     {/* Step 5: Success Callback Hook */}
                      {isCTA && step === 5 && (
                        <div className="w-full text-center py-8">
                           <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -771,7 +948,7 @@ function ActiveView({ data, onClose, onNavigate }: any) {
            </motion.div>
          </div>
 
-         {/* Visual Side - Sticky */}
+         {/* Right Side Sticky Visual Element (Desktop Only) */}
          <motion.div 
            initial={{ opacity: 0 }}
            animate={{ opacity: 1 }}
