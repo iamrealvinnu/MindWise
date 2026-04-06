@@ -516,7 +516,7 @@ function ActiveView({ data, onClose, onNavigate }: any) {
 
   // Discovery Flow Dictionary Options
   const whoOptions = ["Myself", "My Child", "My Teen", "My Family"];
-  const focusOptions = ["Managing Stress", "Emotional Growth", "Leadership", "Better Relationships"];
+  const focusOptions = ["Managing Stress", "Emotional Growth", "Better Relationships"];
 
   const isCTA = data.id === 'cta';
   const ctaBtnBg = "bg-[#E3D5FF]"; 
@@ -723,7 +723,7 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                          <div className="p-6 md:p-10 rounded-[2rem] bg-current/5 border border-current/10 text-center relative overflow-hidden">
                             <Sparkles className="w-10 h-10 mx-auto mb-4 opacity-20" />
                             <p className="text-lg md:text-xl font-light italic leading-relaxed opacity-90 relative z-10">
-                              "We envision a world where caring for the mind is as normalized as caring for the body. True resilience isn't about avoiding stress—it's about learning how to navigate it with grace, clarity, and purpose."
+                              "We envision a world where caring for the mind is as normalized as caring for the body. True resilience isn't about avoiding stress, it's about learning how to navigate it with grace, clarity, and purpose."
                             </p>
                             <div className="mt-6 flex items-center justify-center gap-3 opacity-50">
                               <span className="w-8 h-[1px] bg-current"></span>
