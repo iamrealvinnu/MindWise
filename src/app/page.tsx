@@ -18,7 +18,7 @@ import {
   Brain, Sparkles, Activity, ShieldCheck, X, ArrowRight,
   Shield, Heart, TrendingUp, Zap, CheckCircle2, Award,
   Smile, Star, Compass, Briefcase, User, Users, Home, BookOpen, Clock, ArrowLeft,
-  Mail, MapPin, Instagram, Youtube, Linkedin
+  Mail, MapPin, Instagram, Youtube
 } from "lucide-react";
 
 // --- Type Definitions ---
@@ -689,17 +689,13 @@ function ActiveView({ data, onClose, onNavigate }: any) {
                            <div className="space-y-8">
                              <h4 className="text-sm font-bold uppercase tracking-[0.3em] opacity-50 text-white">Join the Community</h4>
                              <div className="flex flex-wrap gap-4">
-                               <a href="#" className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:scale-105 transition-all group">
+                               <a href="https://www.instagram.com/_.mindwise._?igsh=cGt6N214dGJ6cnd3&utm_source=qr" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:scale-105 transition-all group">
                                  <Instagram className="w-5 h-5 text-[#E3D5FF] group-hover:scale-110 transition-transform" />
                                  <span className="text-sm font-bold text-white">Instagram</span>
                                </a>
                                <a href="#" className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:scale-105 transition-all group">
                                  <Youtube className="w-5 h-5 text-[#E3D5FF] group-hover:scale-110 transition-transform" />
                                  <span className="text-sm font-bold text-white">YouTube</span>
-                               </a>
-                               <a href="#" className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:scale-105 transition-all group">
-                                 <Linkedin className="w-5 h-5 text-[#E3D5FF] group-hover:scale-110 transition-transform" />
-                                 <span className="text-sm font-bold text-white">LinkedIn</span>
                                </a>
                              </div>
                            </div>
